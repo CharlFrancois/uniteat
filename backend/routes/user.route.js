@@ -15,7 +15,7 @@ userRoute.route('/').get((req, res) => {
  })
 
  userRoute.route('/create-user').post((req, res, next) => {
-    StudentModel.create(req.body, (error, data) => {
+    UserModel.create(req.body, (error, data) => {
     if (error) {
       return next(error)
     } else {

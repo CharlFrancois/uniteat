@@ -1,3 +1,3 @@
 module.exports = {
-    db: 'mongodb+srv://MyDigitalProject:tcejorplatigidym@mydigitalproject.ovyxo.mongodb.net/test'
+    db: 'mongodb+srv://MyDigitalProject:tcejorplatigidym@mydigitalproject.ovyxo.mongodb.net/Uniteat'
  }

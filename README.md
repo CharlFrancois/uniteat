@@ -3,6 +3,14 @@
 ## Project setup
 ```
 npm install
+
+```
+
+## Lancer le serveur nodemon
+```
+cd backend
+nodemon server.js
+
 ```
 
 ### Compiles and hot-reloads for development

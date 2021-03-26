@@ -1,8 +1,9 @@
 const express = require('express');
 const userRoute = express.Router();
 
-// Student model
 let UserModel = require('../models/User');
+let AssosSchema = require ('../models/Asso')
+
 
 userRoute.route('/').get((req, res) => {
     UserModel.find((error, data) => {
@@ -22,6 +23,16 @@ userRoute.route('/').get((req, res) => {
       res.json(data)
     }
   })
+});
+
+userRoute.route('/create-asso').post((req, res, next) => {
+  AssosSchema.create(req.body, (error, data) => {
+  if (error) {
+    return next(error)
+  } else {
+    res.json(data)
+  }
+})
 });
 
 userRoute.route('/edit-user/:id').get((req, res) => {

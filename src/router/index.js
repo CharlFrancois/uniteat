@@ -15,6 +15,11 @@ const routes = [
     component: () => import('../components/CreateAsso')
   },
   {
+    path: '/add-product',
+    name: 'AddProduct',
+    component: () => import('../components/AddProduct')
+  },
+  {
     path: '/edit/:id',
     name: 'edit',
     component: () => import('../components/EditUser')

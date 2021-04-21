@@ -6,7 +6,7 @@
         <a class="navbar-brand float-left">UNITEAT</a>
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/">Création d'un compte</router-link>
+            <router-link class="nav-link pr-3" to="/login">Connection</router-link>
           </li>
         </ul>
       </div>

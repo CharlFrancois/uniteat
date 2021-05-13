@@ -2,7 +2,11 @@
   <div class="row justify-content-center">
     <div class="col-md-6">
       <h3 class="text-center">Création d'un compte</h3>
+<<<<<<< HEAD
       <form @submit.prevent="handleSubmitForm" id="form" novalidate>
+=======
+      <form @submit.prevent="handleSubmitForm">
+>>>>>>> :construction: create user
         <div class="form-group">
           <label>Nom</label>
           <input
@@ -58,6 +62,7 @@
 
 <script>
 import axios from "axios";
+import bcrypt from "bcryptjs";
 
 export default {
   data() {
@@ -104,6 +109,13 @@ export default {
           console.log(error);
         });
     },
-  },
-};
+    addUser() {
+      console.log(this.encryptPassword(this.password));
+    },
+    encryptPassword(password) {
+      const salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(password, salt);
+    },
+  }
+}
 </script>

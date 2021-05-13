@@ -1,0 +1,130 @@
+{
+    "products": {
+        "1": {
+            "title": "Courgette",
+            "description": "",
+            "brand": "",
+            "type": "legumes",
+            "dlc": "18/07/2021",
+            "place": "Lille",
+            "picture": "courgette.jpg"
+        },
+        "2": {
+            "title": "Yaourt danone",
+            "description": "",
+            "brand": "Danone",
+            "type": "yaourts",
+            "dlc": "28/07/2021",
+            "place": "Lille",
+            "picture": "danone.jpg"
+        },
+        "3": {
+            "title": "Spaghetti",
+            "description": "",
+            "brand": "Panzani",
+            "type": "pâtes",
+            "dlc": "18/07/2022",
+            "place": "Seclin",
+            "picture": "spaghetti.jpg"
+        },
+        "4": {
+            "title": "Crême fraîche",
+            "description": "",
+            "brand": "Yoplait",
+            "type": "Crèmerie",
+            "dlc": "05/07/2021",
+            "place": "Villeneuve d'Ascq",
+            "picture": "creme_fraiche.jpg"
+        },
+        "5": {
+            "title": "Gruyères",
+            "description": "",
+            "brand": "",
+            "type": "Fromagerie",
+            "dlc": "10/07/2021",
+            "place": "Lille",
+            "picture": "gruyere.jpg"
+        },
+        "6": {
+            "title": "Steak Haché",
+            "description": "",
+            "brand": "",
+            "type": "Boucherie",
+            "dlc": "23/07/2021",
+            "place": "Lille",
+            "picture": "courgette.jpg"
+        },
+        "7": {
+            "title": "Eau de source cristaline",
+            "description": "Pack de 6",
+            "brand": "Cristaline",
+            "type": "Eau",
+            "dlc": "23/07/2022",
+            "place": "Lille",
+            "picture": "eau.jpg"
+        },
+        "8": {
+            "title": "Lait",
+            "description": "2 bouteilles",
+            "brand": "Auchan",
+            "type": "Produit laitier",
+            "dlc": "23/07/2021",
+            "place": "Marcq-en-baroeul",
+            "picture": "lait.jpg"
+        },
+        "9": {
+            "title": "Chocolat en poudre",
+            "description": "",
+            "brand": "Nestlé",
+            "type": "Petit déjeuner",
+            "dlc": "23/07/2021",
+            "place": "Lille",
+            "picture": "courgette.jpg"
+        },
+        "10": {
+            "title": "Jus de fruit",
+            "description": "bio",
+            "brand": "Pressade",
+            "type": "Boisson",
+            "dlc": "23/02/2022",
+            "place": "Englos",
+            "picture": "jus.jpg"
+        },
+        "11": {
+            "title": "Riz long grain",
+            "description": "",
+            "brand": "Auchan",
+            "type": "Epicerie",
+            "dlc": "23/07/2022",
+            "place": "Loos",
+            "picture": "riz.jpg"
+        },
+        "12": {
+            "title": "Petit écolier",
+            "description": "",
+            "brand": "Lu",
+            "type": "Epicerie sucré",
+            "dlc": "28/07/2021",
+            "place": "Lille",
+            "picture": "petitlu.jpg"
+        },
+        "13": {
+            "title": "Chips barbecue",
+            "description": "230 grammes",
+            "brand": "Lays",
+            "type": "Epicerie Salé",
+            "dlc": "23/07/2021",
+            "place": "Lesquin",
+            "picture": "lays.jpg"
+        },
+        "14": {
+            "title": "Lentille",
+            "description": "en vrac",
+            "brand": "Auchan",
+            "type": "",
+            "dlc": "29/12/2022",
+            "place": "Lambersart",
+            "picture": "lentille.jpg"
+        }
+    }
+}

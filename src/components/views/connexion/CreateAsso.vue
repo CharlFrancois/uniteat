@@ -6,71 +6,75 @@
       </router-link>
       <div class="info">
         <span class="text-create">Créer un compte</span>
-        <div class="form">
-          <div class="group">
-            <span class="text-input">Nom de l'association</span>
-            <input
-              type="text"
-              class="data-input"
-              id="id"
-              placeholder="Les Restaurants du Coeur"
-              required
-            />
+        <form @submit.prevent="handleSubmitForm">
+          <div class="form">
+            <div class="group">
+              <span class="text-input">Nom de l'association</span>
+              <input
+                type="text"
+                class="data-input"
+                v-model="asso.username"
+                placeholder="Les Restaurants du Coeur"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">Adresse mail</span>
+              <input
+                type="email"
+                class="data-input"
+                v-model="asso.email"
+                placeholder="example@example.com"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">N° RNA</span>
+              <input
+                type="text"
+                class="data-input"
+                v-model="asso.rna"
+                placeholder="N° d'identification à 9 chiffres"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">Mot de passe</span>
+              <input
+                type="password"
+                class="data-input"
+                v-model="asso.password"
+                placeholder="Créer un mot de passe"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">Adresse</span>
+              <input
+                type="text"
+                class="data-input"
+                v-model="asso.place"
+                placeholder="Choisir une localisation"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">Confirmer le mot de passe</span>
+              <input
+                type="text"
+                class="data-input"
+                id="id"
+                placeholder="Confirmer votre mot de passe"
+                required
+              />
+            </div>
           </div>
-          <div class="group">
-            <span class="text-input">Adresse mail</span>
             <input
-              type="email"
-              class="data-input"
-              id="id"
-              placeholder="example@example.com"
-              required
+              type="submit"
+              class="button-submit"
+              value="Créer mon compte"
             />
-          </div>
-          <div class="group">
-            <span class="text-input">N° RNA</span>
-            <input
-              type="text"
-              class="data-input"
-              id="id"
-              placeholder="N° d'identification à 9 chiffres"
-              required
-            />
-          </div>
-          <div class="group">
-            <span class="text-input">Mot de passe</span>
-            <input
-              type="password"
-              class="data-input"
-              id="id"
-              placeholder="Créer un mot de passe"
-              required
-            />
-          </div>
-          <div class="group">
-            <span class="text-input">Adresse</span>
-            <input
-              type="text"
-              class="data-input"
-              id="id"
-              placeholder="Choisir une localisation"
-              required
-            />
-          </div>
-          <div class="group">
-            <span class="text-input">Confirmer le mot de passe</span>
-            <input
-              type="text"
-              class="data-input"
-              id="id"
-              placeholder="Confirmer votre mot de passe"
-              required
-            />
-          </div>
-        </div>
-        <router-link to="/thanks">
-          <input type="submit" class="button-submit" value="Créer mon compte" />
-        </router-link>
+        </form>
         <span class="already-registred">Vous avez déjà un compte ?</span>
         <router-link class="button-login" to="/login">Se connecter</router-link>
       </div>
@@ -79,8 +83,42 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CreateAsso",
+   data() {
+    return {
+      asso: {
+        username: "",
+        email: "",
+        password: "",
+        rna: "",
+        place: ""
+      },
+    };
+  },
+  methods: {
+    handleSubmitForm() {
+      let apiURL = "http://localhost:4000/api/create-asso";
+
+      axios
+        .post(apiURL, this.asso)
+        .then(() => {
+          this.$router.push("/thanks");
+          this.asso = {
+            username: "",
+            email: "",
+            password: "",
+            rna: "",
+            place : ""
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  }
 };
 </script>
 

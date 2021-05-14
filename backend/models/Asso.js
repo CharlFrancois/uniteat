@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let assosSchema = new Schema({
-    name: {
+    username: {
       type: String
     },
     email: {
@@ -14,6 +14,9 @@ let assosSchema = new Schema({
     password: {
       type: String
     },
+    place: {
+      type: String
+    }
   }, {
     collection: 'Assos'
   })

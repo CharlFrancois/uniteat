@@ -6,13 +6,13 @@
       </router-link>
       <div class="left">
         <span class="text-create">Créer un compte</span>
-        <form method="post" action="/create-user">
+        <form @submit.prevent="handleSubmitForm">
           <div class="group">
             <span class="text-input">Nom d'utilisateur</span>
             <input
               type="text"
               class="data-input"
-              name="username"
+              v-model="user.username"
               placeholder="John"
               required
             />
@@ -22,7 +22,7 @@
             <input
               type="email"
               class="data-input"
-              name="email"
+              v-model="user.email"
               placeholder="johndoe@example.com"
               required
             />
@@ -32,7 +32,7 @@
             <input
               type="password"
               class="data-input"
-              name="password"
+              v-model="user.password"
               placeholder="Créer un mot de passe"
               required
             />
@@ -42,17 +42,12 @@
             <input
               type="password"
               class="data-input"
-              name="confirm-password"
               placeholder="Confirmer votre mot de passe"
               required
             />
           </div>
           <!-- <router-link to="/thanks"> -->
-            <input
-              type="submit"
-              class="button-submit"
-              value="Créer mon compte"
-            />
+          <input type="submit" class="button-submit" value="Créer mon compte" />
           <!-- </router-link> -->
         </form>
       </div>
@@ -93,8 +88,39 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CreateUser",
+  data() {
+    return {
+      user: {
+        username: "",
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    handleSubmitForm() {
+      let apiURL = "http://localhost:4000/api/create-user";
+
+      axios
+        .post(apiURL, this.user)
+        .then(() => {
+          this.$router.push("/thanks");
+          this.user = {
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 

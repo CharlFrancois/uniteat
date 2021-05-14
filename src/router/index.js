@@ -6,23 +6,42 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('../components/CreateUser')
+    name: 'home'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../components/views/connexion/Login')
+  },
+  {
+    path: '/create-account',
+    name: 'CreateAccount',
+    component: () => import('../components/views/connexion/CreateAccount')
+  },
+  {
+    path: '/create-user',
+    name: 'CreateUser',
+    component: () => import('../components/views/connexion/CreateUser')
   },
   {
     path: '/create-asso',
-    name: 'createAsso',
-    component: () => import('../components/CreateAsso')
+    name: 'CreateAsso',
+    component: () => import('../components/views/connexion/CreateAsso')
+  },
+  {
+    path: '/thanks',
+    name: 'Thanks',
+    component: () => import('../components/views/connexion/Thanks')
   },
   {
     path: '/add-product',
     name: 'AddProduct',
-    component: () => import('../components/AddProduct')
+    component: () => import('../components/views/AddProduct')
   },
   {
     path: '/edit/:id',
     name: 'edit',
-    component: () => import('../components/EditUser')
+    component: () => import('../components/views/EditUser')
   }
 ]
 

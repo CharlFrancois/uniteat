@@ -1,11 +1,7 @@
 <template>
   <div>
     <!-- Nav bar -->
-    <Navbar />
-    <!-- TextHome -->
-    
-    <!--Footer-->
-    <Footer />
+    <HomePage />
     <!-- Router view -->
     <div class="container mt-5">
       <router-view></router-view>
@@ -13,13 +9,12 @@
   </div>
 </template>
 <script>
-import Navbar from './components/base/navbar'
-import Footer from './components/base/footer'
+import HomePage from './components/home/homePage'
+
 export default {
   name: 'App',
   components:{
-    Navbar,
-    Footer
+    HomePage
   }
 }
 </script>

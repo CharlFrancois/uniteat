@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <footer class="text-center text-lg-start fixed-bottom text-white">
+  <footer class="text-center text-lg-start text-white">
     <!-- Grid container -->
     <div class="container mt-2">
       <!--Grid row-->

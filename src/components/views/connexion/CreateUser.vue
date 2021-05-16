@@ -186,7 +186,7 @@ export default {
       }
     }
     .separator {
-      border: 0.2em solid black;
+      border-right: 0.2em solid black;
       border-radius: 57px;
     }
     .right {

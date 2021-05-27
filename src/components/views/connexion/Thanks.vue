@@ -3,24 +3,50 @@
     <div class="content">
       <div class="left">
         <span class="text-welcome">Bienvenue !</span>
-        <img src="../../../assets/svg/confirmation_undraw.svg" class="login-svg" />
+        <img
+          src="../../../assets/svg/confirmation_undraw.svg"
+          class="thanks-svg"
+        />
       </div>
       <div class="right">
         <span class="thanks-title">Merci d'avoir rejoint Unit'Eat</span>
-        <span class="mail-send-text">Un mail de confirmation vous a été envoyé à l'adresse</span>
+        <span class="mail-send-text"
+          >Un mail de confirmation vous a été envoyé à l'adresse</span
+        >
         <span class="mail">johndoe@example.com</span>
-        <span class="confirmation-link-text">Merci de cliquer sur le lien de confirmation afin de la valider et vous connecter.</span>
-        <router-link class="button-home" to="/home"
+        <span class="confirmation-link-text"
+          >Merci de cliquer sur le lien de confirmation afin de la valider et
+          vous connecter.</span
+        >
+        <router-link class="button-home" to="/"
           >Retourner à l'accueil</router-link
         >
-    </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Thanks",
+  data() {
+    return {
+      User: [],
+    };
+  },
+  created() {
+    let apiURL = "http://localhost:4000/api";
+    axios
+      .get(apiURL)
+      .then((res) => {
+        this.Students = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
 };
 </script>
 
@@ -56,7 +82,7 @@ export default {
         font-size: 4rem;
         font-weight: bold;
       }
-      .login-svg {
+      .thanks-svg {
         width: 75%;
         margin-top: 27%;
       }
@@ -69,22 +95,22 @@ export default {
       justify-content: center;
 
       .thanks-title {
-          font-weight: bold;
-          font-size: 2em;
-          margin-top: 1em;
+        font-weight: bold;
+        font-size: 2em;
+        margin-top: 1em;
       }
       .mail-send-text {
-          font-size: 0.8em;
-          margin-top: 2em;
+        font-size: 0.8em;
+        margin-top: 2em;
       }
       .mail {
-          color: #FFA62B;
-          font-size: 2em;
-          margin-top: 1em;
+        color: #ffa62b;
+        font-size: 2em;
+        margin-top: 1em;
       }
       .confirmation-link-text {
-          font-size: 0.8em;
-          margin-top: 1em;
+        font-size: 0.8em;
+        margin-top: 1em;
       }
       .button-home {
         background: #2f2e41;
@@ -100,6 +126,32 @@ export default {
         text-align: center;
         font-size: 0.8em;
         margin-top: 1em;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      width: 80%;
+      height: 85%;
+      flex-direction: column;
+      .left {
+        height: 20%;
+        width: 100%;
+        border-radius: 57px 57px 0px 0px;
+        .text-welcome {
+          margin-top: 10% !important;
+          font-size: 3rem;
+        }
+        .thanks-svg {
+          display: none;
+        }
+      }
+      .right {
+        width: 100%;
+        text-align: center;
+        .mail {
+          font-size: 1.5rem;
+        }
       }
     }
   }

@@ -235,7 +235,7 @@ export default {
           height: 3em;
           border: 2px solid #aaaaaa;
           border-radius: 38px;
-          opacity: 0.3;
+          // opacity: 0.3;
           text-indent: 1.5em;
           margin-top: 1em;
           outline: none;
@@ -265,6 +265,32 @@ export default {
 
       .not-registred {
         margin: 1em 0;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      width: 80%;
+      height: 85%;
+      flex-direction: column;
+      overflow: hidden;
+      .left {
+        height: 20%;
+        width: 100%;
+        border-radius: 57px 57px 0px 0px;
+        .text-create {
+          font-size: 1.5rem;
+        }
+        .group {
+          .data-input {
+            width: 17em;
+          }
+        }
+      }
+
+      .right,
+      .separator {
+        display: none;
       }
     }
   }

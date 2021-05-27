@@ -175,5 +175,42 @@ export default {
       }
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    .content {
+      width: 80%;
+      height: 85%;
+      flex-direction: column;
+      .left {
+        height: 20%;
+        width: 100%;
+        border-radius: 57px 57px 0px 0px;
+        .text-uniteat {
+          margin-top: 10% !important;
+        }
+        .login-svg {
+          display: none;
+        }
+      }
+      .right {
+        width: 100%;
+        .text-login {
+          font-size: 2rem;
+        }
+        .group-connect-button {
+          height: auto;
+          .connect-button {
+            width: 15rem;
+            margin-top: 0.5rem;
+          }
+        }
+        .form {
+          .data-input {
+            width: 15em;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

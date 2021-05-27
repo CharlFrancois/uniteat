@@ -6,8 +6,8 @@
       </router-link>
       <div class="info">
         <span class="text-create">Créer un compte</span>
-        <form @submit.prevent="handleSubmitForm">
-          <div class="form">
+        <form class="form" @submit.prevent="handleSubmitForm">
+          <div class="input-group">
             <div class="group">
               <span class="text-input">Nom de l'association</span>
               <input
@@ -61,7 +61,7 @@
             <div class="group">
               <span class="text-input">Confirmer le mot de passe</span>
               <input
-                type="text"
+                type="password"
                 class="data-input"
                 id="id"
                 placeholder="Confirmer votre mot de passe"
@@ -69,11 +69,7 @@
               />
             </div>
           </div>
-            <input
-              type="submit"
-              class="button-submit"
-              value="Créer mon compte"
-            />
+          <input type="submit" class="button-submit" value="Créer mon compte" />
         </form>
         <span class="already-registred">Vous avez déjà un compte ?</span>
         <router-link class="button-login" to="/login">Se connecter</router-link>
@@ -87,20 +83,22 @@ import axios from "axios";
 
 export default {
   name: "CreateAsso",
-   data() {
+  data() {
     return {
       asso: {
         username: "",
         email: "",
         password: "",
         rna: "",
-        place: ""
+        place: "",
       },
     };
   },
   methods: {
     handleSubmitForm() {
       let apiURL = "http://localhost:4000/api/create-asso";
+
+      console.log("test");
 
       axios
         .post(apiURL, this.asso)
@@ -111,14 +109,14 @@ export default {
             email: "",
             password: "",
             rna: "",
-            place : ""
+            place: "",
           };
         })
         .catch((error) => {
           console.log(error);
         });
     },
-  }
+  },
 };
 </script>
 
@@ -142,6 +140,7 @@ export default {
     .back-arrow {
       position: absolute;
       height: 2em;
+      z-index: 1;
     }
     .info {
       display: flex;
@@ -155,38 +154,43 @@ export default {
         font-weight: bold;
       }
       .form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1em;
-        .group {
-          display: flex;
-          flex-direction: column;
-          margin-top: 1em;
-          .text-input {
-            font-weight: bold;
-            font-size: 1em;
-          }
-          .data-input {
-            width: 25em;
-            height: 3em;
-            border: 2px solid #aaaaaa;
-            border-radius: 38px;
-            opacity: 0.3;
-            text-indent: 1.5em;
-            outline: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .input-group {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1em;
+          .group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1em;
+            .text-input {
+              font-weight: bold;
+              font-size: 1em;
+            }
+            .data-input {
+              width: 25em;
+              height: 3em;
+              border: 2px solid #aaaaaa;
+              border-radius: 38px;
+              opacity: 0.3;
+              text-indent: 1.5em;
+              outline: none;
+            }
           }
         }
-      }
-      .button-submit {
-        margin-top: 1em;
-        background: #ffa62b;
-        box-shadow: 0px 3px 6px #00000029;
-        border: none;
-        border-radius: 38px;
-        padding: 0.5em;
-        width: 13em;
-        font-weight: bold;
-        outline: none;
+        .button-submit {
+          margin-top: 1em;
+          background: #ffa62b;
+          box-shadow: 0px 3px 6px #00000029;
+          border: none;
+          border-radius: 38px;
+          padding: 0.5em;
+          width: 13em;
+          font-weight: bold;
+          outline: none;
+        }
       }
 
       .button-login {
@@ -204,6 +208,29 @@ export default {
       }
       .already-registred {
         margin: 1em 0;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      width: 80%;
+      height: 85%;
+      overflow-y: scroll;
+      .info {
+        justify-content: flex-start;
+        .text-create {
+          font-size: 1.5rem;
+        }
+        .form {
+          .input-group {
+            display: flex;
+            .group {
+              .data-input {
+                width: 17rem;
+              }
+            }
+          }
+        }
       }
     }
   }

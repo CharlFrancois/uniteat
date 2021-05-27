@@ -3,7 +3,7 @@
     <div class="content">
       <div class="left">
         <span class="text-uniteat">Unit'Eat</span>
-        <img src="../../../assets/svg/create_undraw.svg" class="login-svg" />
+        <img src="../../../assets/svg/create_undraw.svg" class="create-svg" />
       </div>
       <div class="right">
         <span class="text-create">Créer un compte</span>
@@ -61,7 +61,7 @@ export default {
         font-size: 4rem;
         font-weight: bold;
       }
-      .login-svg {
+      .create-svg {
         width: 75%;
         margin-top: 27%;
       }
@@ -92,7 +92,7 @@ export default {
           padding: 0.5em;
           width: 10em;
           font-weight: bold;
-          color: #FFFFFF;
+          color: #ffffff;
           text-decoration: none;
           outline: none;
           text-align: center;
@@ -100,7 +100,7 @@ export default {
       }
 
       .already-register {
-          margin-top: 7em;
+        margin-top: 7em;
       }
 
       .button-login {
@@ -116,6 +116,44 @@ export default {
         text-decoration: none;
         text-align: center;
         margin-top: 0.5em;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      width: 80%;
+      height: 85%;
+      flex-direction: column;
+      overflow: hidden;
+      .left {
+        height: 20%;
+        width: 100%;
+        border-radius: 57px 57px 0px 0px;
+        .text-uniteat {
+          margin-top: 10% !important;
+        }
+        .create-svg {
+          display: none;
+        }
+      }
+      .right {
+        width: 100%;
+        .text-create {
+          font-size: 2rem;
+        }
+        .group-create-button {
+          flex-direction: column;
+          align-items: center;
+          .connect-button {
+            width: 15rem;
+            margin-top: 0.5rem;
+          }
+        }
+        .form {
+          .data-input {
+            width: 15em;
+          }
+        }
       }
     }
   }

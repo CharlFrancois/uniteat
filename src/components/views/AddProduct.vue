@@ -1,97 +1,204 @@
 <template>
   <div class="add-product">
-    <div class="header">
-      <span class="title">Ajouter un produit</span>
-      <span class="description"
-        >Vous pouvez ici ajouter un produit pour en faire bénéficier une
-        association qui pourra le distribuer à des personnes dans le
-        besoin</span
-      >
+    <Navbar />
+    <div class="content">
+      <span class="text-add-product">Ajouter un produit</span>
+      <div class="separator" />
+      <form @submit.prevent="handleSubmitForm">
+        <div class="product-content">
+          <div class="product-information">
+            <div class="first-group">
+              <div class="group">
+                <span class="text-input">Nom du produit :</span>
+                <input
+                  type="text"
+                  class="name-input"
+                  v-model="product.name"
+                  required
+                />
+              </div>
+              <div class="group">
+                <span class="text-input">DLC</span>
+                <input
+                  type="date"
+                  class="dlc-input"
+                  v-model="product.dlc"
+                  required
+                />
+              </div>
+            </div>
+            <div class="group">
+              <span class="text-input">Lieu</span>
+              <input
+                type="text"
+                class="data-input"
+                v-model="product.place"
+                required
+              />
+            </div>
+            <div class="group">
+              <span class="text-input">Description</span>
+              <textarea
+                class="description-input"
+                maxlength="255"
+                v-model="product.description"
+              />
+            </div>
+          </div>
+          <div class="product-image">
+            <span class="img-text">Sélectionner une/des photos :</span>
+            <div class="input-img" />
+            <input type="file" accept="image/png, image/jpeg" id="image" />
+          </div>
+        </div>
+        <div class="bottom">
+          <input type="submit" class="button-submit" value="Se connecter" />
+        </div>
+      </form>
     </div>
-    <form>
-      <div class="content">
-        <div class="left">
-          <div class="picture">
-            <label>Photo</label>
-            <input type="file" class="form-control-file" />
-          </div>
-        </div>
-        <div class="right">
-          <div class="name">
-            <label>Nom</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="product.name"
-              required
-            />
-          </div>
-          <div class="category">
-            <label>Catégorie</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="product.category"
-              required
-            />
-          </div>
-          <div class="dlc">
-            <label>Date limite de consommation</label>
-            <input
-              type="date"
-              class="form-control"
-              v-model="product.dlc"
-              required
-            />
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-danger btn-block">Ajouter</button>
-      </div>
-    </form>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Navbar from "../base/navbar.vue";
+import Footer from "../base/footer.vue";
+import axios from "axios";
+
 export default {
   name: "AddProduct",
+  components: {
+    Navbar,
+    Footer,
+  },
   data() {
     return {
       product: {
         name: "",
-        picture: "",
-        category: "",
         dlc: "",
+        place: "",
+        description: "",
+        picture: "",
       },
     };
+  },
+  methods: {
+    handleSubmitForm() {
+      let apiURL = "http://localhost:4000/api/add-product";
+
+      axios
+        .post(apiURL, this.product)
+        .then(() => {
+          this.$router.push("/");
+          this.product = {
+            name: "",
+            dlc: "",
+            place: "",
+            description: "",
+          };
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .add-product {
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .title {
-      font-size: 32px;
-      font-weight: bold;
-    }
-  }
   .content {
-    display: flex;
-    align-items: center;
-    place-content: center;
-    .left {
-      width: 30%;
-      .picture {
-        display: flex;
-        flex-direction: column;
-        .form-control-file {
-          width: 70%;
+    padding: 1rem 3rem;
+    .text-add-product {
+      color: #1d515e;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .separator {
+      border-top: 0.2em solid black;
+      border-radius: 57px;
+      width: 10rem;
+      margin: 1rem 0 1rem 0;
+    }
+    .product-content {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      .product-information {
+        .first-group {
+          display: flex;
         }
+        .group {
+          display: flex;
+          flex-direction: column;
+          margin-top: 1em;
+          .text-input {
+            font-weight: bold;
+            font-size: 1em;
+          }
+          .name-input {
+            width: 20em;
+            height: 3em;
+            border: 2px solid #aaaaaa;
+            border-radius: 38px;
+            opacity: 0.3;
+            text-indent: 1.5em;
+            outline: none;
+            margin-right: 3rem;
+          }
+          .dlc-input {
+            width: 12em;
+            height: 3em;
+            border: 2px solid #aaaaaa;
+            border-radius: 38px;
+            opacity: 0.3;
+            text-indent: 1.5em;
+            outline: none;
+          }
+          .description-input {
+            width: 35em;
+            height: 10em;
+            border: 2px solid #aaaaaa;
+            border-radius: 38px;
+            opacity: 0.3;
+            text-indent: 1.5em;
+            outline: none;
+            resize: none;
+          }
+          .data-input {
+            width: 35em;
+            height: 3em;
+            border: 2px solid #aaaaaa;
+            border-radius: 38px;
+            opacity: 0.3;
+            text-indent: 1.5em;
+            outline: none;
+          }
+        }
+      }
+      .product-image {
+        .input-img {
+          background: #f1f1f1 0% 0% no-repeat padding-box;
+          box-shadow: 3px 3px 10px #00000029;
+          border-radius: 35px;
+          height: 20rem;
+          width: 20rem;
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      justify-content: center;
+      .button-submit {
+        margin-top: 1em;
+        background: #ffa62b;
+        box-shadow: 0px 3px 6px #00000029;
+        border: none;
+        border-radius: 38px;
+        padding: 0.5em;
+        width: 13em;
+        font-weight: bold;
+        outline: none;
       }
     }
   }

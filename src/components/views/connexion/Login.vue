@@ -67,22 +67,22 @@ export default {
       this.loginAccountUser(user)
         .then((res) => {
           if (res.data.success) {
-            this.$router.push("/home");
+            this.$router.push("/");
           }
         })
         .catch(() => {
           this.loginAccountAsso(user)
             .then((res) => {
               if (res.data.success) {
-                this.$router.push("/home");
+                this.$router.push("/");
               }
             })
             .catch((err) => {
               console.log(err);
             });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -192,6 +192,7 @@ export default {
         width: 10em;
         font-weight: bold;
         outline: none;
+        align-self: center;
       }
 
       .button-register {

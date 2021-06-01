@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="bottom">
-          <input type="submit" class="button-submit" value="Se connecter" />
+          <input type="submit" class="button-submit" value="Ajouter le produit" />
         </div>
       </form>
     </div>

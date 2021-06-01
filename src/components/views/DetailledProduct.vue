@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import navbar from "../base/navbar.vue";
-import Footer from "../base/footer.vue";
+import navbar from "../base/Navbar";
+import Footer from "../base/Footer";
 import UserCard from "@/components/product/UserCard.vue";
 import ConfirmedReservation from "@/components/views/ConfirmedReservation.vue";
 

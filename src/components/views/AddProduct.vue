@@ -2,9 +2,9 @@
   <div class="add-product">
     <Navbar />
     <div class="content">
-      <span class="text-add-product">Ajouter un produit</span>
+      <span class="text-add-product" @click="testUser">Ajouter un produit</span>
       <div class="separator" />
-      <form @submit.prevent="handleSubmitForm">
+      <form @submit.prevent="addOneProduct">
         <div class="product-content">
           <div class="product-information">
             <div class="first-group">
@@ -61,9 +61,9 @@
 </template>
 
 <script>
-import Navbar from "../base/navbar.vue";
-import Footer from "../base/footer.vue";
-import axios from "axios";
+import Navbar from "../base/navbar";
+import Footer from "../base/footer";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "AddProduct",
@@ -82,24 +82,31 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["user"]),
+  },
+  created() {
+    this.getUser();
+  },
   methods: {
-    handleSubmitForm() {
-      let apiURL = "http://localhost:4000/api/add-product";
-
-      axios
-        .post(apiURL, this.product)
-        .then(() => {
-          this.$router.push("/");
-          this.product = {
-            name: "",
-            dlc: "",
-            place: "",
-            description: "",
-          };
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    ...mapActions(["addProduct", "getUser"]),
+    testUser() {
+      console.log(this.user);
+    },
+    addOneProduct() {
+      let product = {
+        username: this.user.username,
+        email: this.user.email,
+        name: this.product.name,
+        dlc: this.product.dlc,
+        place: this.product.place,
+        description: this.product.description
+      };
+      this.addProduct(product).then((res) => {
+        if (res.data.success) {
+          this.$router.push("/product");
+        }
+      });
     },
   },
 };

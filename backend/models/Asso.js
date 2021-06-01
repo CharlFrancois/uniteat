@@ -1,24 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let assosSchema = new Schema({
-    username: {
-      type: String
-    },
-    email: {
-      type: String
-    },
-    rna: {
-      type: String
-    },
-    password: {
-      type: String
-    },
-    place: {
-      type: String
-    }
-  }, {
-    collection: 'Assos'
-  })
-  
-  module.exports = mongoose.model('Assos', assosSchema)
+const AssoSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  rna: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  place: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+module.exports = Asso = mongoose.model("assos", AssoSchema);

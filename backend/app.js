@@ -1,49 +1,44 @@
-let express = require('express'),
-  cors = require('cors'),
-  mongoose = require('mongoose'),
-  database = require('./database'),
-  bodyParser = require('body-parser');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const path = require("path");
+const cors = require("cors");
+const passport = require("passport");
 
-// Connect mongoDB
-mongoose.Promise = global.Promise;
-mongoose.connect(database.db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Database connected")
-  },
-  error => {
-    console.log("Database could't be connected to: " + error)
-  }
-)
-
-const userAPI = require('../backend/routes/user.route')
-const productAPI = require('../backend/routes/product.route')
+// Initialisation de l'app
 const app = express();
+
+// Middlewares
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+
 app.use(cors());
 
-// API
-app.use('/api', userAPI)
-app.use('/api', productAPI)
+app.use(express.static(path.join(__dirname, "public")));
 
-// Create port
-const port = process.env.PORT || 4000;
-const server = app.listen(port, () => {
-  console.log('Connected to port ' + port)
-})
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
-// Find 404
-app.use((req, res, next) => {
-  next(createError(404));
-});
+const db = require("./config/keys").mongoURI;
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Connection à la BDD réussi");
+  })
+  .catch((err) => console.log(`Impossible de se connecter à la BDD ${err}`));
 
-// error handler
-app.use(function (err, req, res, next) {
-  console.error(err.message);
-  if (!err.statusCode) err.statusCode = 500;
-  res.status(err.statusCode).send(err.message);
+const users = require("./routes/api/users");
+const assos = require("./routes/api/assos");
+app.use("/api/users", users);
+app.use("/api/assos", assos);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Le serveur est bien lancer sur le port ${PORT}`);
 });

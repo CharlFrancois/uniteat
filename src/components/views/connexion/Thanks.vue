@@ -13,7 +13,7 @@
         <span class="mail-send-text"
           >Un mail de confirmation vous a été envoyé à l'adresse</span
         >
-        <span class="mail">johndoe@example.com</span>
+        <span class="mail">{{  user.email }}</span>
         <span class="confirmation-link-text"
           >Merci de cliquer sur le lien de confirmation afin de la valider et
           vous connecter.</span
@@ -27,25 +27,18 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Thanks",
-  data() {
-    return {
-      User: [],
-    };
+  computed: {
+    ...mapGetters(["user"]),
+  },
+  methods: {
+    ...mapActions(["getUser"]),
   },
   created() {
-    let apiURL = "http://localhost:4000/api";
-    axios
-      .get(apiURL)
-      .then((res) => {
-        this.Students = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.getUser();
   },
 };
 </script>

@@ -4,13 +4,17 @@ const User = require("../models/User");
 const Asso = require("../models/Asso");
 const key = require("./keys").secret;
 
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = key;
+const optsUser = {};
+optsUser.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+optsUser.secretOrKey = key;
+
+// const optsAsso = {};
+// optsAsso.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// optsAsso.secretOrKey = key;
 
 module.exports = (passport) => {
   passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
+    new JwtStrategy(optsUser, (jwt_payload, done) => {
       User.findById(jwt_payload._id)
         .then((user) => {
           if (user) return done(null, user);
@@ -22,16 +26,16 @@ module.exports = (passport) => {
     })
   );
 
-  passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      Asso.findById(jwt_payload._id)
-        .then((asso) => {
-          if (asso) return done(null, asso);
-          return done(null, false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-  );
+  // passport.use(
+  //   new JwtStrategy(optsAsso, (jwt_payload, done) => {
+  //     Asso.findById(jwt_payload._id)
+  //       .then((asso) => {
+  //         if (asso) return done(null, asso);
+  //         return done(null, false);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   })
+  // );
 };

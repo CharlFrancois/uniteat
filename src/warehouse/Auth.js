@@ -3,6 +3,7 @@ import axios from "axios";
 const state = {
   token: localStorage.getItem("token") || "",
   user: {},
+  asso: {},
   status: "",
 };
 
@@ -17,25 +18,15 @@ const actions = {
   async loginAccountUser({ commit }, user) {
     commit("auth_request");
     let resUser = await axios.post("http://localhost:5000/api/users/login", user);
-    // let resAsso = await axios.post("http://localhost:5000/api/assos/login", asso)
     if (resUser.data.success) {
       const token = resUser.data.token;
       const user = resUser.data.user;
 
       localStorage.setItem("token", token);
       axios.defaults.headers.common["Authorization"] = token;
-      commit("auth_success", token, user);
+      commit("auth_user_success", token, user);
       return resUser
     } 
-    // if (resAsso.data.success) {
-    //   const token = resAsso.data.token;
-    //   const user = resAsso.data.asso;
-
-    //   localStorage.setItem("token", token);
-    //   axios.defaults.headers.common["Authorization"] = token;
-    //   commit("auth_success", token, user);
-    //   return resAsso;
-    // }
   },
 
   async loginAccountAsso({commit}, asso) {
@@ -43,11 +34,11 @@ const actions = {
     let resAsso = await axios.post("http://localhost:5000/api/assos/login", asso)
     if (resAsso.data.success) {
       const token = resAsso.data.token;
-      const user = resAsso.data.asso;
+      const asso = resAsso.data.asso;
 
       localStorage.setItem("token", token);
       axios.defaults.headers.common["Authorization"] = token;
-      commit("auth_success", token, user);
+      commit("auth_asso_success", token, asso);
       return resAsso;
     }
   },
@@ -83,6 +74,13 @@ const actions = {
     return res
   },
 
+  async getAsso({commit}) {
+    commit('profile_request')
+    let res = await axios.get('http://localhost:5000/api/assos/profile')
+    commit('asso_profile', res.data.asso)
+    return res
+  },
+
   async logout({ commit }) {
     await localStorage.removeItem("token");
     commit("logout");
@@ -95,8 +93,11 @@ const mutations = {
   auth_request(state) {
     state.status = "loading";
   },
-  auth_success(state, token, user) {
+  auth_user_success(state, token, user) {
     (state.token = token), (state.user = user), (state.status = "sucess");
+  },
+  auth_asso_success(state, token, asso) {
+    (state.token = token), (state.asso = asso), (state.status = "sucess");
   },
   register_request(state) {
     state.status = "loading";
@@ -114,6 +115,9 @@ const mutations = {
   },
   user_profile(state, user) {
     state.user = user
+  },
+  asso_profile(state, asso) {
+    state.asso = asso
   }
 };
 

@@ -13,7 +13,7 @@
         <span class="mail-send-text"
           >Un mail de confirmation vous a été envoyé à l'adresse</span
         >
-        <span class="mail">{{  user.email }}</span>
+        <span class="mail">{{ user.email || asso.email }}</span>
         <span class="confirmation-link-text"
           >Merci de cliquer sur le lien de confirmation afin de la valider et
           vous connecter.</span
@@ -32,13 +32,15 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Thanks",
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters(["user", "asso"]),
   },
   methods: {
-    ...mapActions(["getUser"]),
+    
+    ...mapActions(["getUser", "getAsso"]),
   },
   created() {
     this.getUser();
+    this.getAsso();
   },
 };
 </script>

@@ -17,24 +17,26 @@
             <span class="button-text">Continuer avec Facebook</span>
           </button>
         </div>
-        <form class="form">
+        <form class="form" @submit.prevent="loginUser">
           <input
+            id="email"
             type="text"
             class="data-input"
-            id="id"
-            placeholder="Identifiant ou adresse mail"
+            v-model="email"
+            placeholder="Adresse mail"
             required
           />
           <input
+            id="password"
             type="password"
             class="data-input"
-            id="id"
+            v-model="password"
             placeholder="Mot de passe"
             required
           />
           <span class="forget-password">Mot de passe oublié ?</span>
+          <input type="submit" class="button-submit" value="Se connecter" />
         </form>
-        <input type="submit" class="button-submit" value="Se connecter" />
         <span class="not-registred">Pas encore inscrit ?</span>
         <router-link class="button-register" to="/create-account"
           >Créer un compte</router-link
@@ -45,8 +47,42 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    ...mapActions(["loginAccountUser", "loginAccountAsso"]),
+    loginUser() {
+      let user = {
+        email: this.email,
+        password: this.password,
+      };
+      this.loginAccountUser(user)
+        .then((res) => {
+          if (res.data.success) {
+            this.$router.push("/home");
+          }
+        })
+        .catch(() => {
+          this.loginAccountAsso(user)
+            .then((res) => {
+              if (res.data.success) {
+                this.$router.push("/home");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+    }
+  }
 };
 </script>
 

@@ -6,7 +6,7 @@
       </router-link>
       <div class="left">
         <span class="text-create">Créer un compte</span>
-        <form @submit.prevent="handleSubmitForm">
+        <form @submit.prevent="registerUser">
           <div class="group">
             <span class="text-input">Nom d'utilisateur</span>
             <input
@@ -14,7 +14,6 @@
               class="data-input"
               v-model="user.username"
               placeholder="John"
-              required
             />
           </div>
           <div class="group">
@@ -24,7 +23,6 @@
               class="data-input"
               v-model="user.email"
               placeholder="johndoe@example.com"
-              required
             />
           </div>
           <div class="group">
@@ -34,7 +32,6 @@
               class="data-input"
               v-model="user.password"
               placeholder="Créer un mot de passe"
-              required
             />
           </div>
           <div class="group">
@@ -42,13 +39,11 @@
             <input
               type="password"
               class="data-input"
+              v-model="user.confirm_password"
               placeholder="Confirmer votre mot de passe"
-              required
             />
           </div>
-          <!-- <router-link to="/thanks"> -->
           <input type="submit" class="button-submit" value="Créer mon compte" />
-          <!-- </router-link> -->
         </form>
       </div>
       <div class="separator" />
@@ -88,7 +83,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   name: "CreateUser",
@@ -98,27 +93,24 @@ export default {
         username: "",
         email: "",
         password: "",
+        confirm_password: "",
       },
     };
   },
   methods: {
-    handleSubmitForm() {
-      let apiURL = "http://localhost:4000/api/create-user";
-
-      axios
-        .post(apiURL, this.user)
-        .then(() => {
-          this.$router.push("/thanks");
-          this.user = {
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          };
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    ...mapActions(["registerUserParticular"]),
+    registerUser() {
+      let user = {
+        username: this.user.username,
+        email: this.user.email,
+        password: this.user.password,
+        confirm_password: this.user.confirm_password
+      }
+      this.registerUserParticular(user).then(res => {
+        if(res.data.success) {
+          this.$router.push("thanks")
+        }
+      })
     },
   },
 };

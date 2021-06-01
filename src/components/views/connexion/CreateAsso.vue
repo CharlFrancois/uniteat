@@ -6,14 +6,14 @@
       </router-link>
       <div class="info">
         <span class="text-create">Créer un compte</span>
-        <form class="form" @submit.prevent="handleSubmitForm">
+        <form class="form" @submit.prevent="registerAccountAsso">
           <div class="input-group">
             <div class="group">
               <span class="text-input">Nom de l'association</span>
               <input
                 type="text"
                 class="data-input"
-                v-model="asso.username"
+                v-model="asso.name"
                 placeholder="Les Restaurants du Coeur"
                 required
               />
@@ -64,6 +64,7 @@
                 type="password"
                 class="data-input"
                 id="id"
+                v-model="asso.confirm_password"
                 placeholder="Confirmer votre mot de passe"
                 required
               />
@@ -79,42 +80,38 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions } from 'vuex';
 
 export default {
   name: "CreateAsso",
   data() {
     return {
       asso: {
-        username: "",
+        name: "",
         email: "",
         password: "",
+        confirm_password: "",
         rna: "",
         place: "",
       },
     };
   },
   methods: {
-    handleSubmitForm() {
-      let apiURL = "http://localhost:4000/api/create-asso";
-
-      console.log("test");
-
-      axios
-        .post(apiURL, this.asso)
-        .then(() => {
-          this.$router.push("/thanks");
-          this.asso = {
-            username: "",
-            email: "",
-            password: "",
-            rna: "",
-            place: "",
-          };
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+   ...mapActions(["registerAsso"]),
+    registerAccountAsso() {
+      let asso = {
+        name: this.asso.name,
+        email: this.asso.email,
+        rna: this.asso.rna,
+        place: this.asso.place,
+        password: this.asso.password,
+        confirm_password: this.asso.confirm_password
+      }
+      this.registerAsso(asso).then(res => {
+        if(res.data.success) {
+          this.$router.push("thanks")
+        }
+      })
     },
   },
 };

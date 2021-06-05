@@ -2,7 +2,7 @@
   <div class="add-product">
     <Navbar />
     <div class="content">
-      <span class="text-add-product" @click="testUser">Ajouter un produit</span>
+      <span @click="logDate" class="text-add-product">Ajouter un produit</span>
       <div class="separator" />
       <form @submit.prevent="addOneProduct">
         <div class="product-content">
@@ -28,6 +28,14 @@
               </div>
             </div>
             <div class="group">
+              <div class="group">
+                <span class="text-input">Marque :</span>
+                <input
+                  type="text"
+                  class="data-input"
+                  v-model="product.brand"
+                />
+              </div>
               <span class="text-input">Lieu</span>
               <input
                 type="text"
@@ -52,7 +60,11 @@
           </div>
         </div>
         <div class="bottom">
-          <input type="submit" class="button-submit" value="Ajouter le produit" />
+          <input
+            type="submit"
+            class="button-submit"
+            value="Ajouter le produit"
+          />
         </div>
       </form>
     </div>
@@ -61,8 +73,8 @@
 </template>
 
 <script>
-import Navbar from "../base/navbar";
-import Footer from "../base/footer";
+import Navbar from "../base/Navbar";
+import Footer from "../base/Footer";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -75,6 +87,7 @@ export default {
     return {
       product: {
         name: "",
+        brand: "",
         dlc: "",
         place: "",
         description: "",
@@ -90,17 +103,18 @@ export default {
   },
   methods: {
     ...mapActions(["addProduct", "getUser"]),
-    testUser() {
-      console.log(this.user);
+    logDate() {
+      console.log(this.product.dlc);
     },
     addOneProduct() {
       let product = {
         username: this.user.username,
         email: this.user.email,
         name: this.product.name,
-        dlc: this.product.dlc,
+        brand: this.product.brand,
+        dlc: this.product.dlc.toLocaleString(),
         place: this.product.place,
-        description: this.product.description
+        description: this.product.description,
       };
       this.addProduct(product).then((res) => {
         if (res.data.success) {

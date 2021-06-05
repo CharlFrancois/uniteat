@@ -1,7 +1,7 @@
 <template>
   <div class="text-home">
     <div class="top">
-      <img class="logo" src="../../assets/svg/icons-google.svg" />
+      <img class="logo" src="../../assets/Logo_V1_White.png" />
       <right-navbar />
     </div>
     <div class="content">
@@ -18,7 +18,9 @@
           En savoir plus
         </router-link>
       </div>
-      <img src="../../assets/svg/login_undraw.svg" class="home-svg" />
+      <div class="image">
+        <img src="../../assets/undraw/undraw_online.png" class="home-svg" />
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +62,9 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .logo {
+      height: 4rem;
+    }
   }
   .content {
     display: flex;
@@ -89,10 +94,14 @@ export default {
         align-self: center;
       }
     }
-    .home-svg {
-      height: 25rem;
+    .image {
       width: 50%;
-      align-self: center;
+      display: flex;
+      justify-content: center;
+      .home-svg {
+        height: 25rem;
+        align-self: center;
+      }
     }
   }
 }

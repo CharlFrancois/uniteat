@@ -6,6 +6,10 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
+  brand: {
+    type: String,
+    required: false,
+  },
   dlc: {
     type: Date,
     required: true,
@@ -25,6 +29,10 @@ const ProductSchema = new Schema({
   email: {
     type: String,
     required: true,
+  },
+  booked: {
+    type: Boolean,
+    default: false,
   },
   date: {
     type: Date,

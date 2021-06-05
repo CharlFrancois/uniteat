@@ -13,7 +13,9 @@
           Notre engagement
         </router-link>
       </div>
-      <img src="../../assets/svg/login_undraw.svg" class="reunion-svg" />
+      <div class="image">
+        <img src="../../assets/undraw/undraw_mobile.png" class="reunion-svg" />
+      </div>
     </div>
     <div class="all-assos">
       <div class="asso">
@@ -48,10 +50,14 @@ export default {
   .content {
     height: 100vh;
     display: flex;
-    .reunion-svg {
-      height: 20rem;
+    .image {
       width: 50%;
-      align-self: center;
+      display: flex;
+      justify-content: center;
+      .reunion-svg {
+        height: 25rem;
+        align-self: center;
+      }
     }
     .information {
       display: flex;
@@ -90,6 +96,7 @@ export default {
       height: 9rem;
       width: 9rem;
       border-radius: 50%;
+      background: white;
       box-shadow: 0px 3px 6px #00000029;
       text-align: center;
       display: flex;

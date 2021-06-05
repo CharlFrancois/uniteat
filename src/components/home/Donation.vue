@@ -1,6 +1,11 @@
 <template>
   <div class="donation">
-    <img src="../../assets/svg/login_undraw.svg" class="superhero-svg" />
+    <div class="image">
+      <img
+        src="../../assets/undraw/undraw_powerful.png"
+        class="superhero-svg"
+      />
+    </div>
     <div class="information">
       <span class="title">Nous avons besoin de vous</span>
       <span class="description"
@@ -24,10 +29,14 @@ export default {
 .donation {
   height: 100vh;
   display: flex;
-  .superhero-svg {
-    height: 15rem;
+  .image {
     width: 50%;
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    .superhero-svg {
+      height: 25rem;
+      align-self: center;
+    }
   }
   .information {
     display: flex;

@@ -11,6 +11,7 @@
             <span class="text-input">Nom d'utilisateur</span>
             <input
               type="text"
+              name="to_name"
               class="data-input"
               v-model="user.username"
               placeholder="John"
@@ -20,6 +21,7 @@
             <span class="text-input">Adresse mail</span>
             <input
               type="email"
+              name="user_email"
               class="data-input"
               v-model="user.email"
               placeholder="johndoe@example.com"
@@ -83,7 +85,8 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
+import emailjs from "emailjs-com";
 
 export default {
   name: "CreateUser",
@@ -99,18 +102,34 @@ export default {
   },
   methods: {
     ...mapActions(["registerUserParticular"]),
-    registerUser() {
+    registerUser(e) {
       let user = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
-        confirm_password: this.user.confirm_password
-      }
-      this.registerUserParticular(user).then(res => {
-        if(res.data.success) {
-          this.$router.push("thanks")
+        confirm_password: this.user.confirm_password,
+      };
+      this.registerUserParticular(user).then((res) => {
+        if (res.data.success) {
+          emailjs
+            .sendForm(
+              "service_aof6qdf",
+              "template_rm3a9k3",
+              e.target,
+              "user_jon2DZLjLfJA7p7GqifZi"
+            )
+            .then(
+              (result) => {
+                console.log("SUCCESS!", result.status, result.text);
+              },
+              (error) => {
+                console.log("FAILED...", error);
+              }
+            );
+
+          this.$router.push("thanks");
         }
-      })
+      });
     },
   },
 };

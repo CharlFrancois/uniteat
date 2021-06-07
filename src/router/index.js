@@ -7,7 +7,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "home",
+    name: "HomePage",
+    component: () => import("../components/views/HomePage")
   },
   {
     path: "/login",
@@ -45,9 +46,6 @@ const routes = [
     path: "/thanks",
     name: "Thanks",
     component: () => import("../components/views/connexion/Thanks"),
-    meta: {
-      requiresAuth: true,
-    },
   },
   {
     path: "/product",
@@ -72,6 +70,16 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("../components/views/About"),
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: () => import("../components/views/ContactForm"),
   }
 ];
 

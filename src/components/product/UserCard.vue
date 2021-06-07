@@ -4,8 +4,8 @@
       <img src="../../assets/thomas.jpg" class="profil-picture" />
     </div>
     <div class="right">
-      <span class="user">Thomas</span>
-      <span class="city">Lille</span>
+      <span class="user">{{ username }}</span>
+      <span class="city">{{ place }}</span>
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 export default {
   name: "UserCard",
+  props: ['username', 'place']
 };
 </script>
 

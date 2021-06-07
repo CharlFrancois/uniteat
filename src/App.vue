@@ -7,7 +7,15 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    this.getProduct();
+  },
+  methods: {
+    ...mapActions(["getProduct"]),
+  },
 }
 </script>

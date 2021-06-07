@@ -8,7 +8,7 @@
         </div>
         <div class="content">
           <span>Un message de notification a été envoyé à</span>
-          <UserCard />
+          <UserCard :username="username" :place="place" />
           <button class="chat-button" @click="openChat = true">
             <span>Messagerie</span>
             <img class="typing" src="../../assets/typing.png" />
@@ -18,7 +18,7 @@
     </div>
     <div class="right">
       <span class="thanks">Merci d'avoir utilisé Unit'Eat !</span>
-      <!-- <img class="thanks-picture" src="../../assets/confirmation.svg" /> -->
+      <img class="thanks-picture" src="../../assets/undraw/undraw_confirmation.svg" />
     </div>
     <Chat v-if="openChat" @close="openChat = false" />
   </div>
@@ -30,6 +30,7 @@ import Chat from "@/components/base/Chat.vue"
 
 export default {
   name: "ConfirmedReservation",
+  props: ['username', 'place'],
   components: {
     UserCard,
     Chat
@@ -102,12 +103,17 @@ export default {
   .right {
     width: 50%;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
     .thanks {
       font-family: "Raleway";
       font-weight: bold;
       font-size: 2rem;
+    }
+    .thanks-picture {
+      z-index: -1;
+      margin-top: 3rem;
     }
   }
 }

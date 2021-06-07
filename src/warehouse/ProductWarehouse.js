@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const state = {
-  product: {},
+  products: {},
   status: "",
 };
 
 const getters = {
   autheState: (state) => state.status,
-  product: (state) => state.product
+  products: (state) => state.products
 };
 
 const actions = {
@@ -25,8 +25,17 @@ const actions = {
   async getProduct({commit}) {
     commit('product_request')
     let res = await axios.get('http://localhost:5000/api/products/get-products')
-    commit('product_profile', res.data.product)
+    commit('products_list', res.data)
     return res
+  },
+
+  async updateProduct({commit}, bookedUpdate) {
+    commit("update_product_request")
+    let res = await axios.post("http://localhost:5000/api/products/book-product", bookedUpdate)
+    if (res.data.success !== undefined) {
+      commit("update_product_success");
+    }
+    return res;
   }
 };
 
@@ -37,11 +46,17 @@ const mutations = {
   add_product_success(state) {
     state.status = "success";
   },
+  update_product_request(state) {
+    state.status = "loading";
+  },
+  update_product_success(state) {
+    state.status = "success";
+  },
   product_request(state) {
     state.status = 'loading'
   },
-  user_profile(state, product) {
-    state.product = product
+  products_list(state, product) {
+    state.products = product
   },
 };
 

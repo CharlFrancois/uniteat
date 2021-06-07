@@ -8,11 +8,11 @@
       <div class="right">
         <span class="text-login">Connectez-vous</span>
         <div class="group-connect-button">
-          <button class="connect-button">
+          <button class="connect-button" @click="showUnavailablePopup = !showUnavailablePopup">
             <img class="icon" src="../../../assets/svg/icons-google.svg" />
             <span class="button-text">Continuer avec Google</span>
           </button>
-          <button class="connect-button">
+          <button class="connect-button" @click="showUnavailablePopup = !showUnavailablePopup">
             <img class="icon" src="../../../assets/svg/icons-facebook.svg" />
             <span class="button-text">Continuer avec Facebook</span>
           </button>
@@ -43,11 +43,18 @@
         >
       </div>
     </div>
+    <div v-if="showUnavailablePopup" class="unavailable-backdrop">
+      <unavailable-popup
+        class="unavailable-popup"
+        @close="showUnavailablePopup = !showUnavailablePopup"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import UnavailablePopup from "../../base/UnavailablePopup.vue";
 
 export default {
   name: "Login",
@@ -55,8 +62,10 @@ export default {
     return {
       email: "",
       password: "",
+      showUnavailablePopup: false,
     };
   },
+  components: { UnavailablePopup },
   methods: {
     ...mapActions(["loginAccountUser", "loginAccountAsso"]),
     loginUser() {
@@ -67,22 +76,22 @@ export default {
       this.loginAccountUser(user)
         .then((res) => {
           if (res.data.success) {
-            this.$router.push("/home");
+            this.$router.push("/");
           }
         })
         .catch(() => {
           this.loginAccountAsso(user)
             .then((res) => {
               if (res.data.success) {
-                this.$router.push("/home");
+                this.$router.push("/");
               }
             })
             .catch((err) => {
               console.log(err);
             });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -192,6 +201,7 @@ export default {
         width: 10em;
         font-weight: bold;
         outline: none;
+        align-self: center;
       }
 
       .button-register {
@@ -210,6 +220,17 @@ export default {
         margin: 1em 0;
       }
     }
+  }
+  .unavailable-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media only screen and (max-width: 600px) {

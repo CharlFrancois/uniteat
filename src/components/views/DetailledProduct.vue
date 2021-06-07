@@ -1,22 +1,21 @@
 <template>
   <div class="detailled-product">
-    <navbar />
     <div class="content" v-if="!confirmReservation">
       <div class="left">
         <img class="product-img" src="../../assets/empty_image.jpg" />
       </div>
       <div class="product-information">
-        <span class="title"> {{ title }} </span>
+        <span class="title"> {{ product.name }} </span>
         <div class="separator" />
-        <span class="brand"> {{ brand }} </span>
-        <span class="description"> {{ description }} </span>
+        <span class="brand"> {{ product.brand }} </span>
+        <span class="description"> {{ product.description }} </span>
         <div class="group">
           <span>DLC : </span>
-          <span class="info"> {{ dlc }} </span>
+          <span class="info"> {{ dateConvert(product.dlc) }} </span>
         </div>
         <div class="group">
           <span>Lieu : </span>
-          <span class="info"> {{ place }} </span>
+          <span class="info"> {{ product.place }} </span>
         </div>
         <div class="reserve">
           <button class="button-reserve" @click="bookProduct">
@@ -24,39 +23,49 @@
             <img class="shopping-cart" src="../../assets/shopping-cart.png" />
           </button>
           <span class="text-proposed-by">Ce produit est proposé par :</span>
-          <UserCard />
+          <UserCard :username="product.username" :place="product.place" />
         </div>
       </div>
     </div>
-    <ConfirmedReservation v-else/>
-    <Footer />
+    <ConfirmedReservation :username="product.username" :place="product.place" v-else />
   </div>
 </template>
 
 <script>
-import navbar from "../base/navbar.vue";
-import Footer from "../base/footer.vue";
 import UserCard from "@/components/product/UserCard.vue";
 import ConfirmedReservation from "@/components/views/ConfirmedReservation.vue";
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: "DetailledProduct",
-  components: { navbar, UserCard, ConfirmedReservation, Footer },
+  components: { UserCard, ConfirmedReservation },
   data() {
     return {
-      title: "Jus d'orange",
-      brand: "Innocent",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      dlc: "28/06/2021",
-      place: "Lille",
       confirmReservation: false
-    };
+    }
   },
+  props: ["product"],
   methods: {
-      bookProduct() {
-         this.confirmReservation = true 
-      }
+    ...mapActions(["updateProduct"]),
+
+    bookProduct() {
+      let product = {
+        _id: this.product._id
+      };
+      this.updateProduct(product).then((res) => {
+        if (res.data.success) {
+          this.confirmReservation = true
+        }
+      });
+      this.confirmReservation = true
+    },
+    dateConvert(date) {
+      var date_new = new Date(date);
+      return new Intl.DateTimeFormat("fr-FR").format(date_new);
+    },
+  },
+  computed: {
+    ...mapGetters(["products"])
   },
 };
 </script>

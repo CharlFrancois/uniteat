@@ -46,9 +46,6 @@ const routes = [
     path: "/thanks",
     name: "Thanks",
     component: () => import("../components/views/connexion/Thanks"),
-    meta: {
-      requiresAuth: true,
-    },
   },
   {
     path: "/product",
@@ -82,7 +79,7 @@ const routes = [
   {
     path: "/contact",
     name: "Contact",
-    component: () => import("../components/views/Contact"),
+    component: () => import("../components/views/ContactForm"),
   }
 ];
 

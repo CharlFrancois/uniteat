@@ -34,7 +34,7 @@
 <script>
 import UserCard from "@/components/product/UserCard.vue";
 import ConfirmedReservation from "@/components/views/ConfirmedReservation.vue";
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: "DetailledProduct",
@@ -46,7 +46,17 @@ export default {
   },
   props: ["product"],
   methods: {
+    ...mapActions(["updateProduct"]),
+
     bookProduct() {
+      let product = {
+        _id: this.product._id
+      };
+      this.updateProduct(product).then((res) => {
+        if (res.data.success) {
+          this.confirmReservation = true
+        }
+      });
       this.confirmReservation = true
     },
     dateConvert(date) {

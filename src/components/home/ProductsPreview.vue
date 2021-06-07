@@ -2,10 +2,16 @@
   <div class="products-preview">
     <span class="title">Les produits disponibles en ce moment</span>
     <div class="products">
-      <product-card />
-      <product-card />
-      <product-card />
-      <product-card />
+      <div class="product" v-for="product in displayProducts" :key="product._id">
+        <product-card
+          :product="product"
+          :title="product.name"
+          :brand="product.brand"
+          :description="product.description"
+          :place="product.place"
+          :dlc="dateConvert(product.dlc)"
+        />
+      </div>
     </div>
     <router-link class="show-products" to="/product"
       >Découvrir les produits
@@ -14,10 +20,33 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ProductCard from "../base/ProductCard.vue";
+
 export default {
   name: "ProductsPreview",
   components: { ProductCard },
+  computed: {
+    ...mapGetters(["products"]),
+
+    displayProducts() {
+      const filteredProducts = Array.from(this.products)
+        .filter((product) => {
+          var datum = Date.parse(product.dlc);
+          if (!product.booked && datum > Date.now()) {
+            return product
+          }
+        })
+        .slice(0, 4)
+      return filteredProducts;
+    },
+  },
+  methods: {
+    dateConvert(date) {
+      var date_new = new Date(date);
+      return new Intl.DateTimeFormat("fr-FR").format(date_new);
+    },
+  },
 };
 </script>
 

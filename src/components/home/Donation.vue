@@ -14,14 +14,30 @@
         que vous permettez de limiter le gaspillage alimentaire. Soyez nos héros
         !</span
       >
-      <router-link class="show-more" to="/about"> Faire un don </router-link>
+      <button class="donation-button" @click="showUnavailablePopup = !showUnavailablePopup">
+        Faire un don
+      </button>
+    </div>
+    <div v-if="showUnavailablePopup" class="unavailable-backdrop">
+      <unavailable-popup
+        class="unavailable-popup"
+        @close="showUnavailablePopup = !showUnavailablePopup"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import UnavailablePopup from "../base/UnavailablePopup.vue";
+
 export default {
   name: "Donation",
+  components: { UnavailablePopup },
+  data() {
+    return {
+      showUnavailablePopup: false
+    };
+  },
 };
 </script>
 
@@ -52,7 +68,7 @@ export default {
       font-size: 2rem;
       color: #1d515e;
     }
-    .show-more {
+    .donation-button {
       background: #ffa62b;
       box-shadow: 0px 3px 6px #00000029;
       border: none;
@@ -64,6 +80,17 @@ export default {
       text-decoration: none;
       align-self: center;
     }
+  }
+  .unavailable-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

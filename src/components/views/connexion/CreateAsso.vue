@@ -12,6 +12,7 @@
               <span class="text-input">Nom de l'association</span>
               <input
                 type="text"
+                name="to_name"
                 class="data-input"
                 v-model="asso.name"
                 placeholder="Les Restaurants du Coeur"
@@ -22,6 +23,7 @@
               <span class="text-input">Adresse mail</span>
               <input
                 type="email"
+                name="user_email"
                 class="data-input"
                 v-model="asso.email"
                 placeholder="example@example.com"
@@ -81,6 +83,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import emailjs from "emailjs-com";
 
 export default {
   name: "CreateAsso",
@@ -98,7 +101,7 @@ export default {
   },
   methods: {
    ...mapActions(["registerAsso"]),
-    registerAccountAsso() {
+    registerAccountAsso(e) {
       let asso = {
         name: this.asso.name,
         email: this.asso.email,
@@ -109,6 +112,22 @@ export default {
       }
       this.registerAsso(asso).then(res => {
         if(res.data.success) {
+           emailjs
+            .sendForm(
+              "service_aof6qdf",
+              "template_rm3a9k3",
+              e.target,
+              "user_jon2DZLjLfJA7p7GqifZi"
+            )
+            .then(
+              (result) => {
+                console.log("SUCCESS!", result.status, result.text);
+              },
+              (error) => {
+                console.log("FAILED...", error);
+              }
+            );
+
           this.$router.push("thanks")
         }
       })
@@ -171,7 +190,6 @@ export default {
               height: 3em;
               border: 2px solid #aaaaaa;
               border-radius: 38px;
-              opacity: 0.3;
               text-indent: 1.5em;
               outline: none;
             }

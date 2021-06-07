@@ -27,6 +27,15 @@ const actions = {
     let res = await axios.get('http://localhost:5000/api/products/get-products')
     commit('products_list', res.data)
     return res
+  },
+
+  async updateProduct({commit}, bookedUpdate) {
+    commit("update_product_request")
+    let res = await axios.post("http://localhost:5000/api/products/book-product", bookedUpdate)
+    if (res.data.success !== undefined) {
+      commit("update_product_success");
+    }
+    return res;
   }
 };
 
@@ -35,6 +44,12 @@ const mutations = {
     state.status = "loading";
   },
   add_product_success(state) {
+    state.status = "success";
+  },
+  update_product_request(state) {
+    state.status = "loading";
+  },
+  update_product_success(state) {
     state.status = "success";
   },
   product_request(state) {

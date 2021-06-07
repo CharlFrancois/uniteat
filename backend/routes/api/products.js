@@ -33,4 +33,15 @@ router.post(
   })
 );
 
+router.post("/book-product", (req, res) => {
+  let { _id } = req.body;
+
+  Product.findOneAndUpdate({ _id: _id }, { booked: true }).then(() => {
+    return res.status(201).json({
+      success: true,
+      msg: "Le produit à bien était modifié",
+    });
+  })
+});
+
 module.exports = router;

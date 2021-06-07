@@ -12,7 +12,11 @@
         />
       </div>
       <div class="all-products">
-        <div class="product" v-for="product in products" :key="product._id">
+        <div
+          class="product"
+          v-for="product in displayProducts"
+          :key="product._id"
+        >
           <product-card
             @clicked="openDetails"
             v-if="!showDetails"
@@ -36,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import Footer from "../base/Footer.vue";
 import Navbar from "../base/Navbar";
 import ProductCard from "../base/ProductCard.vue";
@@ -50,36 +54,38 @@ export default {
       showDetails: false,
       productDetails: {},
       searchValue: "",
-      resultProducts: [],
     };
-  },
-  created() {
-    this.getProduct();
   },
   computed: {
     ...mapGetters(["products"]),
-    productsToShow() {
-      let result = []
-        this.products.forEach(product => {
-          if (this.searchValue === "" && !product.booked) return result = this.products;
-          return product.name.slice(0, 3) === this.searchValue
-            ? result.push(product)
-            : [];
+
+    displayProducts() {
+      const filteredProducts = Array.from(this.products)
+        .filter((product) => {
+          var datum = Date.parse(product.dlc);
+          if (!product.booked && datum > Date.now()) {
+            return (
+              product.name.includes(this.searchValue) ||
+              product.brand.includes(this.searchValue)
+            );
+          }
+        })
+        .sort((a, b) => {
+          if (a.date < b.date) return 1;
+          if (a.date > b.date) return -1;
+          return 0;
         });
-      return result
+      return filteredProducts;
     },
   },
   methods: {
-    ...mapActions(["getProduct"]),
     dateConvert(date) {
       var date_new = new Date(date);
       return new Intl.DateTimeFormat("fr-FR").format(date_new);
     },
     openDetails(value) {
       this.productDetails = value;
-      console.log(this.productDetails);
       this.showDetails = true;
-      console.log(this.showDetails);
     },
   },
 };

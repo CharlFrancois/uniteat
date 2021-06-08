@@ -7,7 +7,9 @@
           <span class="text-confirmed">Réservation confirmée</span>
         </div>
         <div class="content">
-          <span>Un message de notification a été envoyé à</span>
+          <span class="notification-send"
+            >Un message de notification a été envoyé à</span
+          >
           <UserCard :username="username" :place="place" />
           <button class="chat-button" @click="openChat = true">
             <span>Messagerie</span>
@@ -18,28 +20,28 @@
     </div>
     <div class="right">
       <span class="thanks">Merci d'avoir utilisé Unit'Eat !</span>
-      <img class="thanks-picture" src="../../assets/undraw/undraw_confirmation.svg" />
+      <img
+        class="thanks-picture"
+        src="../../assets/undraw/undraw_confirmation.svg"
+      />
     </div>
-    <Chat v-if="openChat" @close="openChat = false" />
   </div>
 </template>
 
 <script>
 import UserCard from "@/components/product/UserCard.vue";
-import Chat from "@/components/base/Chat.vue"
 
 export default {
   name: "ConfirmedReservation",
-  props: ['username', 'place'],
+  props: ["username", "place"],
   components: {
     UserCard,
-    Chat
   },
   data() {
     return {
       openChat: false,
     };
-  }
+  },
 };
 </script>
 
@@ -81,6 +83,9 @@ export default {
         align-items: center;
         height: 100%;
         justify-content: space-around;
+        .notification-send {
+          text-align: center;
+        }
       }
       .chat-button {
         background: #2f2e41;
@@ -114,6 +119,14 @@ export default {
     .thanks-picture {
       z-index: -1;
       margin-top: 3rem;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .left {
+      width: 100%;
+    }
+    .right {
+      display: none;
     }
   }
 }

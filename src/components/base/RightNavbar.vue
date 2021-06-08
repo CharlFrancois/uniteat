@@ -21,6 +21,7 @@
       <div class="user-logged" v-if="isLoggedIn">
         <router-link class="text-bold" to="/my-account">Mon compte</router-link>
         <router-link class="text" to="/my-products">Mes produits</router-link>
+        <a class="text" @click.prevent="logoutUser">Déconnexion</a>
       </div>
       <div class="separator" />
       <router-link class="text-bold" to="/about"
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "RightNavbar",
   data() {
@@ -48,8 +49,14 @@ export default {
     ...mapGetters(["isLoggedIn"]),
   },
   methods: {
+    ...mapActions(["logout"]),
+
     changeStateUserInfo() {
       this.showUserInformation = !this.showUserInformation;
+    },
+    logoutUser() {
+      this.$router.push("/");
+      this.logout();
     },
   },
 };
@@ -59,6 +66,7 @@ export default {
 .right-navbar {
   display: flex;
   align-items: center;
+  z-index: 1;
   .chat,
   .user {
     background: #2f2e41;

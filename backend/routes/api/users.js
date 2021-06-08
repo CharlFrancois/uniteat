@@ -11,12 +11,14 @@ router.post("/register", (req, res) => {
   if (password !== confirm_password) {
     return res.status(400).json({
       msg: "Les mots de passes ne sont pas les mêmes",
+      success: false
     });
   }
   User.findOne({ username: username }).then((user) => {
     if (user) {
       return res.status(400).json({
         msg: "Le nom d'utilisateur est déjà utilisé",
+        success: false
       });
     }
   });
@@ -24,6 +26,7 @@ router.post("/register", (req, res) => {
     if (user) {
       return res.status(400).json({
         msg: "L'email est déjà utilisé",
+        success: false
       });
     }
   });
@@ -87,9 +90,94 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     return res.json({
-        user: req.user
+      user: req.user,
+    });
+  }
+);
+
+router.post("/edit-user-email", (req, res) => {
+  let { _id, newEmail } = req.body;
+
+  User.findOne({ email: newEmail }).then((user) => {
+    if (user) {
+      return res.status(400).json({
+        msg: "L'email est déjà utilisé",
+        success: false
       });
     }
-);
+  });
+
+  User.findOneAndUpdate({ _id: _id }, { email: newEmail }).then(() => {
+    return res.status(201).json({
+      success: true,
+      msg: "L'utilisateur à bien était modifié",
+    });
+  });
+});
+
+router.post("/edit-user-password", (req, res) => {
+  let { email, oldPassword, newPassword, newPasswordConfirm } = req.body;
+
+  if (newPassword !== newPasswordConfirm) {
+    return res.status(400).json({
+      msg: "Les mots de passes ne sont pas les mêmes",
+      success: false
+    });
+  }
+
+  User.findOne({ email: email }).then((user) => {
+    bcrypt.compare(oldPassword, user.password).then((isMatch) => {
+      if (isMatch) {
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newPassword, salt, (err, hash) => {
+            if (err) throw err;
+            newPassword = hash;
+            User.findOneAndUpdate(
+              { email: email },
+              { password: newPassword }
+            ).then(() => {
+              return res.status(201).json({
+                success: true,
+                msg: "L'utilisateur à bien était modifié",
+              });
+            });
+          });
+        });
+      } else {
+        return res.status(404).json({
+          msg: "Mot de passe incorrect",
+          success: false,
+        });
+      }
+    });
+  });
+});
+
+router.post("/forget-password", (req, res) => {
+  let { email, newPassword, newPasswordConfirm } = req.body;
+
+  if (newPassword !== newPasswordConfirm) {
+    return res.status(400).json({
+      msg: "Les mots de passes ne sont pas les mêmes",
+      success: false
+    });
+  }
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newPassword, salt, (err, hash) => {
+      if (err) throw err;
+      newPassword = hash;
+      User.findOneAndUpdate(
+        { email: email },
+        { password: newPassword }
+      ).then(() => {
+        return res.status(201).json({
+          success: true,
+          msg: "L'utilisateur à bien était modifié",
+        });
+      });
+    });
+  });
+});
 
 module.exports = router;

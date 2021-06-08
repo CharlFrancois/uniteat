@@ -11,6 +11,7 @@
           maxlength="55"
         />
       </div>
+        <img class="no-data" src="../../assets/undraw/undraw_no_data.svg" v-if="!displayProducts.length" />
       <div class="all-products">
         <div
           class="product"
@@ -96,6 +97,8 @@ export default {
   .content {
     min-height: 100vh;
     padding: 1rem 0;
+        display: flex;
+    flex-direction: column;
     .search-bar {
       display: flex;
       place-content: center;
@@ -125,6 +128,9 @@ export default {
         display: none;
       }
     }
+    .no-data {
+      height: 25rem;
+    }
     .all-products {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -134,6 +140,18 @@ export default {
     .detailled-product {
       width: 100%;
       height: 100%;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      .search-bar {
+        .search-input {
+          width: 65%;
+        }
+      }
+      .all-products {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   }
 }

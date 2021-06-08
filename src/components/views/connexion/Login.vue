@@ -34,7 +34,7 @@
             placeholder="Mot de passe"
             required
           />
-          <span class="forget-password">Mot de passe oublié ?</span>
+          <router-link to="/password-forget" class="forget-password">Mot de passe oublié ?</router-link>
           <input type="submit" class="button-submit" value="Se connecter" />
         </form>
         <span class="not-registred">Pas encore inscrit ?</span>

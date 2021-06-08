@@ -101,7 +101,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["registerUserParticular"]),
+    ...mapActions(["registerUserParticular", "loginAccountUser"]),
     registerUser(e) {
       let user = {
         username: this.user.username,
@@ -126,8 +126,15 @@ export default {
                 console.log("FAILED...", error);
               }
             );
-
-          this.$router.push("thanks");
+          let userLogin = {
+            email: this.user.email,
+            password: this.user.password,
+          };
+          this.loginAccountUser(userLogin).then((res) => {
+            if (res.data.success) {
+              this.$router.push("thanks");
+            }
+          });
         }
       });
     },
@@ -179,7 +186,6 @@ export default {
           height: 3em;
           border: 2px solid #aaaaaa;
           border-radius: 38px;
-          opacity: 0.3;
           text-indent: 1.5em;
           outline: none;
         }

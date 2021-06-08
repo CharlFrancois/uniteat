@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 import emailjs from "emailjs-com";
 
 export default {
@@ -100,7 +100,7 @@ export default {
     };
   },
   methods: {
-   ...mapActions(["registerAsso"]),
+    ...mapActions(["registerAsso", "loginAccountAsso"]),
     registerAccountAsso(e) {
       let asso = {
         name: this.asso.name,
@@ -108,11 +108,11 @@ export default {
         rna: this.asso.rna,
         place: this.asso.place,
         password: this.asso.password,
-        confirm_password: this.asso.confirm_password
-      }
-      this.registerAsso(asso).then(res => {
-        if(res.data.success) {
-           emailjs
+        confirm_password: this.asso.confirm_password,
+      };
+      this.registerAsso(asso).then((res) => {
+        if (res.data.success) {
+          emailjs
             .sendForm(
               "service_aof6qdf",
               "template_rm3a9k3",
@@ -128,9 +128,18 @@ export default {
               }
             );
 
-          this.$router.push("thanks")
+          let assoLogin = {
+            email: this.asso.email,
+            password: this.asso.password,
+          };
+
+          this.loginAccountAsso(assoLogin).then((res) => {
+            if (res.data.success) {
+              this.$router.push("thanks");
+            }
+          });
         }
-      })
+      });
     },
   },
 };

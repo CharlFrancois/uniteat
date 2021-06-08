@@ -2,7 +2,11 @@
   <div class="products-preview">
     <span class="title">Les produits disponibles en ce moment</span>
     <div class="products">
-      <div class="product" v-for="product in displayProducts" :key="product._id">
+      <div
+        class="product"
+        v-for="product in displayProducts"
+        :key="product._id"
+      >
         <product-card
           :product="product"
           :title="product.name"
@@ -34,10 +38,10 @@ export default {
         .filter((product) => {
           var datum = Date.parse(product.dlc);
           if (!product.booked && datum > Date.now()) {
-            return product
+            return product;
           }
         })
-        .slice(0, 4)
+        .slice(0, 4);
       return filteredProducts;
     },
   },
@@ -80,6 +84,13 @@ export default {
     text-decoration: none;
     width: 13rem;
     text-align: center;
+  }
+  @media only screen and (max-width: 600px) {
+    .products {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
   }
 }
 </style>

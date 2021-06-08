@@ -10,7 +10,6 @@
     </div>
     <span class="description"> {{ description }} </span>
   </div>
-  
 </template>
 
 <script>
@@ -19,8 +18,8 @@ export default {
   props: ["title", "brand", "place", "dlc", "description", "product"],
   methods: {
     onCardClick() {
-      this.$emit('clicked', this.product)
-    }
+      this.$emit("clicked", this.product);
+    },
   },
 };
 </script>
@@ -58,6 +57,10 @@ export default {
     font-size: 0.8rem;
   }
   .dlc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
     .dlc-date {
       font-weight: 700;
       color: #47bb53;
@@ -70,6 +73,14 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 150px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 10.5rem;
+    height: 16.5rem;
+    .description {
+      display: none;
+    }
   }
 }
 </style>

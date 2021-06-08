@@ -74,6 +74,33 @@ const actions = {
     return res
   },
 
+  async editUserEmail({commit}, userUpdate) {
+    commit("register_request")
+    let res = await axios.post("http://localhost:5000/api/users/edit-user-email", userUpdate)
+    if (res.data.success !== undefined) {
+      commit("register_success");
+    }
+    return res;
+  },
+
+  async editUserPassword({commit}, userUpdate) {
+    commit("register_request")
+    let res = await axios.post("http://localhost:5000/api/users/edit-user-password", userUpdate)
+    if (res.data.success !== undefined) {
+      commit("register_success");
+    }
+    return res;
+  },
+
+  async forgetPassword({commit}, userUpdate) {
+    commit("register_request")
+    let res = await axios.post("http://localhost:5000/api/users/forget-password", userUpdate)
+    if (res.data.success !== undefined) {
+      commit("register_success");
+    }
+    return res;
+  },
+
   async getAsso({commit}) {
     commit('profile_request')
     let res = await axios.get('http://localhost:5000/api/assos/profile')

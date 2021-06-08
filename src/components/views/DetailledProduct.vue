@@ -7,6 +7,7 @@
       <div class="product-information">
         <span class="title"> {{ product.name }} </span>
         <div class="separator" />
+        <img class="product-img" src="../../assets/empty_image.jpg" />
         <span class="brand"> {{ product.brand }} </span>
         <span class="description"> {{ product.description }} </span>
         <div class="group">
@@ -27,22 +28,26 @@
         </div>
       </div>
     </div>
-    <ConfirmedReservation :username="product.username" :place="product.place" v-else />
+    <ConfirmedReservation
+      :username="product.username"
+      :place="product.place"
+      v-else
+    />
   </div>
 </template>
 
 <script>
 import UserCard from "@/components/product/UserCard.vue";
 import ConfirmedReservation from "@/components/views/ConfirmedReservation.vue";
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "DetailledProduct",
   components: { UserCard, ConfirmedReservation },
   data() {
     return {
-      confirmReservation: false
-    }
+      confirmReservation: false,
+    };
   },
   props: ["product"],
   methods: {
@@ -50,14 +55,14 @@ export default {
 
     bookProduct() {
       let product = {
-        _id: this.product._id
+        _id: this.product._id,
       };
       this.updateProduct(product).then((res) => {
         if (res.data.success) {
-          this.confirmReservation = true
+          this.confirmReservation = true;
         }
       });
-      this.confirmReservation = true
+      this.confirmReservation = true;
     },
     dateConvert(date) {
       var date_new = new Date(date);
@@ -65,7 +70,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["products"])
+    ...mapGetters(["products"]),
   },
 };
 </script>
@@ -102,6 +107,9 @@ export default {
         width: 10rem;
         margin: 1rem 0 1rem 0;
       }
+      .product-img {
+        display: none;
+      }
       .description {
         width: 60%;
         margin: 1rem 0 1rem 0;
@@ -137,6 +145,22 @@ export default {
             margin-left: 0.3rem;
             height: 1rem;
           }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .content {
+      .left {
+        display: none;
+      }
+      .product-information {
+        width: 100%;
+        .product-img {
+          display: initial;
+        }
+        .reserve {
+          width: 100%;
         }
       }
     }

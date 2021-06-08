@@ -11,7 +11,7 @@
       <div class="right">
         <span class="thanks-title">Merci d'avoir rejoint Unit'Eat</span>
         <span class="mail-send-text"
-          >Un mail de confirmation vous a été envoyé à l'adresse</span
+          >Un mail de confirmation vous a été envoyé à votre adresse mail</span
         >
         <span class="mail">{{ user.email || asso.email }}</span>
         <span class="confirmation-link-text"

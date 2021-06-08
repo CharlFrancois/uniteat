@@ -3,7 +3,7 @@
     <router-link to="/">
       <img class="logo" src="../../assets/logo.png" />
     </router-link>
-    <div class="product">
+    <div class="product" v-if="isLoggedIn">
       <router-link class="all-product" to="/product">
         <span>Tous les produits</span>
         <img class="search-icon" src="../../assets/search.png" />
@@ -87,6 +87,17 @@ export default {
   .right-navbar {
     position: absolute;
     right: 0;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .product {
+      .all-product {
+        display: none;
+      }
+      .add-product {
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>

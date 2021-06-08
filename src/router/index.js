@@ -48,6 +48,14 @@ const routes = [
     component: () => import("../components/views/connexion/Thanks"),
   },
   {
+    path: "/my-account",
+    name: "MyAccount",
+    component: () => import("../components/views/MyAccount"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/product",
     name: "Product",
     component: () => import("../components/views/Product"),
@@ -80,6 +88,14 @@ const routes = [
     path: "/contact",
     name: "Contact",
     component: () => import("../components/views/ContactForm"),
+  },
+  {
+    path: "/password-forget",
+    name: "PasswordForget",
+    component: () => import("../components/views/connexion/PasswordForget"),
+    meta: {
+      requiresGuest: true,
+    },
   }
 ];
 

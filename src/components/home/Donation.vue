@@ -14,7 +14,10 @@
         que vous permettez de limiter le gaspillage alimentaire. Soyez nos héros
         !</span
       >
-      <button class="donation-button" @click="showUnavailablePopup = !showUnavailablePopup">
+      <button
+        class="donation-button"
+        @click="showUnavailablePopup = !showUnavailablePopup"
+      >
         Faire un don
       </button>
     </div>
@@ -35,7 +38,7 @@ export default {
   components: { UnavailablePopup },
   data() {
     return {
-      showUnavailablePopup: false
+      showUnavailablePopup: false,
     };
   },
 };
@@ -91,6 +94,22 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    .information {
+      height: 60%;
+      width: 100%;
+    }
+    .image {
+      height: 40%;
+      display: flex;
+      align-self: center;
+      .superhero-svg {
+        height: 17rem;
+      }
+    }
   }
 }
 </style>

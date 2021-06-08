@@ -30,11 +30,7 @@
             <div class="group">
               <div class="group">
                 <span class="text-input">Marque :</span>
-                <input
-                  type="text"
-                  class="data-input"
-                  v-model="product.brand"
-                />
+                <input type="text" class="data-input" v-model="product.brand" />
               </div>
               <span class="text-input">Lieu</span>
               <input
@@ -162,7 +158,6 @@ export default {
             height: 3em;
             border: 2px solid #aaaaaa;
             border-radius: 38px;
-            opacity: 0.3;
             text-indent: 1.5em;
             outline: none;
             margin-right: 3rem;
@@ -172,7 +167,6 @@ export default {
             height: 3em;
             border: 2px solid #aaaaaa;
             border-radius: 38px;
-            opacity: 0.3;
             text-indent: 1.5em;
             outline: none;
           }
@@ -181,7 +175,6 @@ export default {
             height: 10em;
             border: 2px solid #aaaaaa;
             border-radius: 38px;
-            opacity: 0.3;
             text-indent: 1.5em;
             outline: none;
             resize: none;
@@ -191,7 +184,6 @@ export default {
             height: 3em;
             border: 2px solid #aaaaaa;
             border-radius: 38px;
-            opacity: 0.3;
             text-indent: 1.5em;
             outline: none;
           }
@@ -220,6 +212,32 @@ export default {
         width: 13em;
         font-weight: bold;
         outline: none;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .content {
+      padding: 1rem;
+      .product-content {
+        flex-direction: column;
+        .product-information {
+          .first-group {
+            display: initial;
+          }
+          .group {
+            .data-input,
+            .description-input {
+              width: 20em;
+            }
+          }
+        }
+        .product-image {
+          .input-img {
+            height: 10rem;
+            width: 10rem;
+          }
+        }
       }
     }
   }

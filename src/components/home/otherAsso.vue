@@ -107,5 +107,22 @@ export default {
       }
     }
   }
+
+  @media only screen and (max-width: 600px) {
+    .content {
+      .information {
+        width: 100%;
+      }
+      .image {
+        display: none;
+      }
+    }
+    .all-assos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      row-gap: 1em;
+      justify-items: center;
+    }
+  }
 }
 </style>

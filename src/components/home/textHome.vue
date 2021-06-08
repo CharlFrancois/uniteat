@@ -104,5 +104,15 @@ export default {
       }
     }
   }
+  @media only screen and (max-width: 600px) {
+    .content {
+      .information {
+        width: 100%;
+      }
+      .image {
+        display: none;
+      }
+    }
+  }
 }
 </style>

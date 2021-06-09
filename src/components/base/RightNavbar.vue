@@ -1,8 +1,8 @@
 <template>
   <div class="right-navbar">
-    <router-link class="chat" v-if="isLoggedIn" to="/chat">
+    <button class="chat" v-if="isLoggedIn" @click="showUnavailablePopup = !showUnavailablePopup">
       <img class="icon" src="../../assets/typing.png" />
-    </router-link>
+    </button>
     <button class="user" @mouseenter="changeStateUserInfo">
       <img class="icon" src="../../assets/list.png" />
       <img class="icon-user" src="../../assets/user.png" />
@@ -20,7 +20,7 @@
       </div>
       <div class="user-logged" v-if="isLoggedIn">
         <router-link class="text-bold" to="/my-account">Mon compte</router-link>
-        <router-link class="text" to="/my-products">Mes produits</router-link>
+        <a class="text" @click="showUnavailablePopup = !showUnavailablePopup">Mes produits</a>
         <a class="text" @click.prevent="logoutUser">Déconnexion</a>
       </div>
       <div class="separator" />
@@ -33,16 +33,27 @@
     <router-link class="login" v-if="!isLoggedIn" to="/login"
       >Connexion
     </router-link>
+    <div v-if="showUnavailablePopup" class="unavailable-backdrop">
+      <unavailable-popup
+        class="unavailable-popup"
+        @close="showUnavailablePopup = !showUnavailablePopup"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import UnavailablePopup from "./UnavailablePopup.vue";
 export default {
   name: "RightNavbar",
+  components: {
+    UnavailablePopup,
+  },
   data() {
     return {
       showUserInformation: false,
+      showUnavailablePopup: false
     };
   },
   computed: {
@@ -138,6 +149,17 @@ export default {
     color: #262533;
     margin-left: 1rem;
     text-decoration: none;
+  }
+  .unavailable-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

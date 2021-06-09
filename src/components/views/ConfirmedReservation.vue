@@ -11,7 +11,7 @@
             >Un message de notification a été envoyé à</span
           >
           <UserCard :username="username" :place="place" />
-          <button class="chat-button" @click="openChat = true">
+          <button class="chat-button" @click="showUnavailablePopup = !showUnavailablePopup">
             <span>Messagerie</span>
             <img class="typing" src="../../assets/typing.png" />
           </button>
@@ -25,21 +25,29 @@
         src="../../assets/undraw/undraw_confirmation.svg"
       />
     </div>
+    <div v-if="showUnavailablePopup" class="unavailable-backdrop">
+      <unavailable-popup
+        class="unavailable-popup"
+        @close="showUnavailablePopup = !showUnavailablePopup"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import UserCard from "@/components/product/UserCard.vue";
+import UnavailablePopup from "../base/UnavailablePopup.vue";
 
 export default {
   name: "ConfirmedReservation",
   props: ["username", "place"],
   components: {
     UserCard,
+    UnavailablePopup,
   },
   data() {
     return {
-      openChat: false,
+      showUnavailablePopup: false,
     };
   },
 };
@@ -121,6 +129,19 @@ export default {
       margin-top: 3rem;
     }
   }
+
+  .unavailable-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   @media only screen and (max-width: 600px) {
     .left {
       width: 100%;

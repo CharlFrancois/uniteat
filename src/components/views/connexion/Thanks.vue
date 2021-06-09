@@ -70,16 +70,16 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
+      place-content: space-between;
       .text-welcome {
         margin-top: 30%;
         font-family: "Raleway";
         color: #ffffff;
-        font-size: 4rem;
+        font-size: 3rem;
         font-weight: bold;
       }
       .thanks-svg {
         width: 75%;
-        margin-top: 27%;
       }
     }
     .right {

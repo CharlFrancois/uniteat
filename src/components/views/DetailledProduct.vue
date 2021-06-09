@@ -2,7 +2,8 @@
   <div class="detailled-product">
     <div class="content" v-if="!confirmReservation">
       <div class="left">
-        <img class="product-img" src="../../assets/empty_image.jpg" />
+        <img src="../../assets/empty_image.jpg" class="product-img" v-if="!product.files.length" />
+        <img :src="getImgUrl(product.files[0])" class="product-img" v-if="product.files.length" />
       </div>
       <div class="product-information">
         <span class="title"> {{ product.name }} </span>
@@ -64,6 +65,10 @@ export default {
       });
       this.confirmReservation = true;
     },
+    getImgUrl(img) {
+      var images = require.context("../../../backend/uploads/", false);
+      return images("./" + img);
+    },
     dateConvert(date) {
       var date_new = new Date(date);
       return new Intl.DateTimeFormat("fr-FR").format(date_new);
@@ -87,7 +92,8 @@ export default {
       justify-content: center;
       .product-img {
         border-radius: 57px;
-        height: 70%;
+        height: 20rem;
+        width: 20rem;
       }
     }
     .product-information {

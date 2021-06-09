@@ -26,6 +26,7 @@
             :brand="product.brand"
             :description="product.description"
             :place="product.place"
+            :files="product.files"
             :dlc="dateConvert(product.dlc)"
           />
         </div>

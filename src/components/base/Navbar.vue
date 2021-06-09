@@ -4,13 +4,13 @@
       <img class="logo" src="../../assets/logo.png" />
     </router-link>
     <div class="product" v-if="isLoggedIn">
-      <router-link class="all-product" to="/product">
+      <button class="all-product" @click="$router.go('/product')">
         <span>Tous les produits</span>
         <img class="search-icon" src="../../assets/search.png" />
-      </router-link>
-      <router-link class="add-product" to="/add-product">
+      </button>
+      <button class="add-product" @click="$router.go('/add-product')">
         <img src="../../assets/plus.png" />
-      </router-link>
+      </button>
     </div>
     <right-navbar class="right" />
   </div>

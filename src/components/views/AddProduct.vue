@@ -52,7 +52,12 @@
           <div class="product-image">
             <span class="img-text">Sélectionner une/des photos :</span>
             <div class="input-img" />
-            <input type="file" accept="image/png, image/jpeg" id="image" />
+            <input
+              type="file"
+              accept="image/png, image/jpeg"
+              id="image"
+              @change="uploadFile"
+            />
           </div>
         </div>
         <div class="bottom">
@@ -88,6 +93,7 @@ export default {
         place: "",
         description: "",
         picture: "",
+        files: null,
       },
     };
   },
@@ -99,20 +105,27 @@ export default {
   },
   methods: {
     ...mapActions(["addProduct", "getUser"]),
+    uploadFile(event) {
+      this.product.files = event.target.files;
+    },
     logDate() {
       console.log(this.product.dlc);
     },
     addOneProduct() {
-      let product = {
-        username: this.user.username,
-        email: this.user.email,
-        name: this.product.name,
-        brand: this.product.brand,
-        dlc: this.product.dlc.toLocaleString(),
-        place: this.product.place,
-        description: this.product.description,
-      };
-      this.addProduct(product).then((res) => {
+      const formData = new FormData();
+
+      for (const i of Object.keys(this.product.files)) {
+        formData.append("files", this.product.files[i]);
+        formData.append("username", this.user.username);
+        formData.append("email", this.user.email);
+        formData.append("name", this.product.name);
+        formData.append("brand", this.product.brand);
+        formData.append("dlc", this.product.dlc);
+        formData.append("place", this.product.place);
+        formData.append("description", this.product.description);
+      }
+      
+      this.addProduct(formData).then((res) => {
         if (res.data.success) {
           this.$router.push("/product");
         }

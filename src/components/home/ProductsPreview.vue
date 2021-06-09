@@ -13,6 +13,7 @@
           :brand="product.brand"
           :description="product.description"
           :place="product.place"
+          :files="product.files"
           :dlc="dateConvert(product.dlc)"
         />
       </div>
@@ -68,7 +69,7 @@ export default {
   }
   .products {
     display: flex;
-    width: 60%;
+    width: 75%;
     justify-content: space-evenly;
   }
   .show-products {

@@ -2,7 +2,8 @@
   <div class="product-card" @click="onCardClick">
     <span class="title"> {{ title }} </span>
     <span class="brand"> {{ brand }} </span>
-    <img src="../../assets/empty_image.jpg" class="img" />
+    <img src="../../assets/empty_image.jpg" class="img" v-if="!files.length" />
+    <img :src="getImgUrl(files[0])" class="img" v-if="files.length" />
     <span class="place"> {{ place }} </span>
     <div class="dlc">
       <span class="dlc-text"> DLC : </span>
@@ -15,10 +16,17 @@
 <script>
 export default {
   name: "ProductCard",
-  props: ["title", "brand", "place", "dlc", "description", "product"],
+  props: ["title", "brand", "place", "dlc", "description", "product", "files"],
   methods: {
     onCardClick() {
       this.$emit("clicked", this.product);
+    },
+    getImgUrl(img) {
+      var images = require.context(
+        "../../../backend/uploads/",
+        false
+      );
+      return images("./" + img);
     },
   },
 };
@@ -48,6 +56,7 @@ export default {
   }
   .img {
     width: 8rem;
+    height: 8rem;
     border-radius: 33px;
     align-self: center;
     margin: 0.5rem 0;

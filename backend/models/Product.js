@@ -11,7 +11,7 @@ const ProductSchema = new Schema({
     required: false,
   },
   dlc: {
-    type: Date,
+    type: String,
     required: true,
   },
   place: {
@@ -37,6 +37,9 @@ const ProductSchema = new Schema({
   date: {
     type: Date,
     default: Date.now,
+  },
+  files: {
+    type: Array
   },
 });
 

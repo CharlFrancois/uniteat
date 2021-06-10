@@ -54,6 +54,7 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
+      place-content: space-between;
       .text-uniteat {
         margin-top: 30%;
         font-family: "Raleway";
@@ -63,7 +64,6 @@ export default {
       }
       .create-svg {
         width: 75%;
-        margin-top: 27%;
       }
     }
     .right {

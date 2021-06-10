@@ -8,11 +8,12 @@
       <div class="information">
         <span class="title">Bienvenue sur Unit'Eat</span>
         <span class="description"
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          risus diam, faucibus et ante ullamcorper, convallis iaculis tellus.
-          Donec ut vestibulum sapien, et pretium augue. Aenean sem leo, porta
-          convallis lobortis non, ullamcorper ac lacus. Cras ac enim id ipsum
-          aliquam placerat vel at ex.</span
+          >Unit’Eat c’est un projet d’étude imaginé par les 5 étudiants de
+            MyDigitalSchool Lille, pour la réalisation du MyDigitalProject. Le
+            site permet de mettre en relation les associations avec les
+            particuliers, afin qu’il propose simplement des produits
+            alimentaires, qu’ils auraient en trop chez eux, et qui pourrait
+            intéresser une association.</span
         >
         <router-link class="show-more" to="/about">
           En savoir plus

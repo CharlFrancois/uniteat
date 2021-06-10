@@ -1,7 +1,7 @@
 <template>
   <div class="user-card">
     <div class="left">
-      <img src="../../assets/thomas.jpg" class="profil-picture" />
+      <img src="../../assets/user_empty.png" class="profil-picture" />
     </div>
     <div class="right">
       <span class="user">{{ username }}</span>

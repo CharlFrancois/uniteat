@@ -14,14 +14,6 @@ router.post("/register", (req, res) => {
       success: false
     });
   }
-  User.findOne({ username: username }).then((user) => {
-    if (user) {
-      return res.status(400).json({
-        msg: "Le nom d'utilisateur est déjà utilisé",
-        success: false
-      });
-    }
-  });
   User.findOne({ email: email }).then((user) => {
     if (user) {
       return res.status(400).json({

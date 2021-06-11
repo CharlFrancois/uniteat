@@ -19,8 +19,8 @@
         <div class="section">
           <span class="title">Plus d'informations</span>
           <a class="link" target="_blank" rel="noopener noreferrer" href="https://fne.asso.fr/dossiers/gaspillage-alimentaire-d%C3%A9finition-enjeux-et-chiffres">Le gaspillage alimentaire</a>
-          <router-link class="link" to="about">Exemple lien</router-link>
-          <router-link class="link" to="about">Exemple lien</router-link>
+          <router-link class="link" to="contact">Contact</router-link>
+          <!-- <router-link class="link" to="about">Exemple lien</router-link> -->
         </div>
       </div>
     </div>

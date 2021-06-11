@@ -4,7 +4,7 @@
       <div class="left">
         <span class="text-welcome">Bienvenue !</span>
         <img
-          src="../../../assets/svg/confirmation_undraw.svg"
+          src="../../assets/svg/confirmation_undraw.svg"
           class="thanks-svg"
         />
       </div>
@@ -62,7 +62,7 @@ export default {
     border-radius: 57px;
     display: flex;
     .left {
-      background-image: url("../../../assets/svg/Confirmation.svg");
+      background-image: url("../../assets/svg/Confirmation.svg");
       background-size: cover;
       width: 40%;
       height: 100%;

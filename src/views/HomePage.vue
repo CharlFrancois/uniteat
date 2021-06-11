@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import Footer from "../base/Footer";
-import Donation from "../home/Donation";
-import OtherAsso from "../home/OtherAsso";
-import ProductsPreview from "../home/ProductsPreview";
-import TextHome from "../home/TextHome";
+import Footer from "@/components/base/Footer";
+import Donation from "@/components/home/Donation";
+import OtherAsso from "@/components/home/OtherAsso";
+import ProductsPreview from "@/components/home/ProductsPreview";
+import TextHome from "@/components/home/TextHome";
 export default {
   name: "HomePage",
   components: { TextHome, Donation, OtherAsso, Footer, ProductsPreview },

@@ -3,17 +3,17 @@
     <div class="content">
       <div class="left">
         <span class="text-uniteat">Unit'Eat</span>
-        <img src="../../../assets/svg/login_undraw.svg" class="login-svg" />
+        <img src="../../assets/svg/login_undraw.svg" class="login-svg" />
       </div>
       <div class="right">
         <span class="text-login">Connectez-vous</span>
         <div class="group-connect-button">
           <button class="connect-button" @click="showUnavailablePopup = !showUnavailablePopup">
-            <img class="icon" src="../../../assets/svg/icons-google.svg" />
+            <img class="icon" src="../../assets/svg/icons-google.svg" />
             <span class="button-text">Continuer avec Google</span>
           </button>
           <button class="connect-button" @click="showUnavailablePopup = !showUnavailablePopup">
-            <img class="icon" src="../../../assets/svg/icons-facebook.svg" />
+            <img class="icon" src="../../assets/svg/icons-facebook.svg" />
             <span class="button-text">Continuer avec Facebook</span>
           </button>
         </div>
@@ -54,7 +54,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import UnavailablePopup from "../../base/UnavailablePopup.vue";
+import UnavailablePopup from "@/components/base/UnavailablePopup.vue";
 
 export default {
   name: "Login",
@@ -112,7 +112,7 @@ export default {
     border-radius: 57px;
     display: flex;
     .left {
-      background-image: url("../../../assets/svg/Connexion.svg");
+      background-image: url("../../assets/svg/Connexion.svg");
       background-size: cover;
       width: 40%;
       height: 100%;

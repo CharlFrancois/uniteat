@@ -2,7 +2,7 @@
   <div class="create-asso">
     <div class="content">
       <router-link to="/create-account">
-        <img class="back-arrow" src="../../../assets/left-arrow.png" />
+        <img class="back-arrow" src="../../assets/left-arrow.png" />
       </router-link>
       <div class="info">
         <span class="text-create">Créer un compte</span>

@@ -5,7 +5,7 @@
     </router-link>
     <div class="product" v-if="isLoggedIn">
       <router-link class="all-product" to="/product">
-        <span @click="$router.go('/product')">Tous les produits</span>
+        <span>Tous les produits</span>
         <img class="search-icon" src="../../assets/search.png" />
       </router-link>
       <router-link class="add-product" to="/add-product">
@@ -35,7 +35,7 @@ export default {
   methods: {
     changeStateUserInfo() {
       this.showUserInformation = !this.showUserInformation;
-    },
+    }
   },
 };
 </script>

@@ -11,7 +11,7 @@
           maxlength="55"
         />
       </div>
-        <img class="no-data" src="../../assets/undraw/undraw_no_data.svg" v-if="!displayProducts.length" />
+        <img class="no-data" src="../assets/undraw/undraw_no_data.svg" v-if="!displayProducts.length" />
       <div class="all-products">
         <div
           class="product"
@@ -43,10 +43,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Footer from "../base/Footer.vue";
-import Navbar from "../base/Navbar";
-import ProductCard from "../base/ProductCard.vue";
-import DetailledProduct from "./DetailledProduct.vue";
+import Footer from "@/components/base/Footer.vue";
+import Navbar from "@/components/base/Navbar";
+import ProductCard from "@/components/base/ProductCard.vue";
+import DetailledProduct from "@/components/product/DetailledProduct.vue";
 
 export default {
   name: "Product",
@@ -107,7 +107,7 @@ export default {
       .search-input {
         height: 3rem;
         width: 40%;
-        background-image: url(../../assets/search.png);
+        background-image: url(../assets/search.png);
         background-position: right;
         background-repeat: no-repeat;
         background-size: 1.5rem;

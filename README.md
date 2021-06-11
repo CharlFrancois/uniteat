@@ -1,4 +1,4 @@
-# uniteat
+# Unit'Eat
 
 ## Project setup
 ```
@@ -9,11 +9,11 @@ npm install
 ## Lancer le serveur nodemon
 ```
 cd backend
-nodemon index.js
+nodemon app.js
 
 ```
 
-### Compiles and hot-reloads for development
+### Lancer la webapp
 ```
 npm run serve
 ```

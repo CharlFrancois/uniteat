@@ -8,12 +8,12 @@ const routes = [
   {
     path: "/",
     name: "HomePage",
-    component: () => import("../components/views/HomePage")
+    component: () => import("@/views/HomePage")
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import("../components/views/connexion/Login"),
+    component: () => import("@/views/connexion/Login"),
     meta: {
       requiresGuest: true,
     },
@@ -21,7 +21,7 @@ const routes = [
   {
     path: "/create-account",
     name: "CreateAccount",
-    component: () => import("../components/views/connexion/CreateAccount"),
+    component: () => import("@/views/connexion/CreateAccount"),
     meta: {
       requiresGuest: true,
     },
@@ -29,7 +29,7 @@ const routes = [
   {
     path: "/create-user",
     name: "CreateUser",
-    component: () => import("../components/views/connexion/CreateUser"),
+    component: () => import("@/views/connexion/CreateUser"),
     meta: {
       requiresGuest: true,
     },
@@ -37,7 +37,7 @@ const routes = [
   {
     path: "/create-asso",
     name: "CreateAsso",
-    component: () => import("../components/views/connexion/CreateAsso"),
+    component: () => import("@/views/connexion/CreateAsso"),
     meta: {
       requiresGuest: true,
     },
@@ -45,12 +45,12 @@ const routes = [
   {
     path: "/thanks",
     name: "Thanks",
-    component: () => import("../components/views/connexion/Thanks"),
+    component: () => import("@/views/connexion/Thanks"),
   },
   {
     path: "/my-account",
     name: "MyAccount",
-    component: () => import("../components/views/MyAccount"),
+    component: () => import("@/views/MyAccount"),
     meta: {
       requiresAuth: true,
     },
@@ -58,7 +58,7 @@ const routes = [
   {
     path: "/product",
     name: "Product",
-    component: () => import("../components/views/Product"),
+    component: () => import("@/views/Product"),
     meta: {
       requiresAuth: true,
     },
@@ -66,15 +66,7 @@ const routes = [
   {
     path: "/add-product",
     name: "AddProduct",
-    component: () => import("../components/views/AddProduct"),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/detailled-product",
-    name: "DetailledProduct",
-    component: () => import("../components/views/DetailledProduct"),
+    component: () => import("@/views/AddProduct"),
     meta: {
       requiresAuth: true,
     },
@@ -82,17 +74,17 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    component: () => import("../components/views/About"),
+    component: () => import("@/views/About"),
   },
   {
     path: "/contact",
     name: "Contact",
-    component: () => import("../components/views/ContactForm"),
+    component: () => import("@/views/ContactForm"),
   },
   {
     path: "/password-forget",
     name: "PasswordForget",
-    component: () => import("../components/views/connexion/PasswordForget"),
+    component: () => import("@/views/connexion/PasswordForget"),
     meta: {
       requiresGuest: true,
     },

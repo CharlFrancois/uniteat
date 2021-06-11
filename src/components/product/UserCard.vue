@@ -19,7 +19,6 @@ export default {
 
 <style lang="scss" scoped>
 .user-card {
-  background-color: #ffffff;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 30px;
   display: flex;

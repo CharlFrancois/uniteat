@@ -2,7 +2,7 @@
   <div class="create-user">
     <div class="content">
       <router-link to="/create-account">
-        <img class="back-arrow" src="../../../assets/left-arrow.png" />
+        <img class="back-arrow" src="../../assets/left-arrow.png" />
       </router-link>
       <div class="left">
         <span class="text-create">Créer un compte</span>
@@ -53,11 +53,11 @@
         <span class="text-login">Se connecter</span>
         <div class="group-connect-button">
           <button class="connect-button">
-            <img class="icon" src="../../../assets/svg/icons-google.svg" />
+            <img class="icon" src="../../assets/svg/icons-google.svg" />
             <span class="button-text">Continuer avec Google</span>
           </button>
           <button class="connect-button">
-            <img class="icon" src="../../../assets/svg/icons-facebook.svg" />
+            <img class="icon" src="../../assets/svg/icons-facebook.svg" />
             <span class="button-text">Continuer avec Facebook</span>
           </button>
         </div>

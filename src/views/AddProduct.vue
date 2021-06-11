@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import Navbar from "../base/Navbar";
-import Footer from "../base/Footer";
+import Navbar from "@/components/base/Navbar";
+import Footer from "@/components/base/Footer";
 import { mapActions, mapGetters } from "vuex";
 
 export default {

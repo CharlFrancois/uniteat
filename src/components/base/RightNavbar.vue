@@ -28,7 +28,7 @@
         >A propos de Unit'Eat</router-link
       >
       <router-link class="text" to="/contact">Contact</router-link>
-      <router-link class="text" to="/help">Aide</router-link>
+      <router-link class="text" to="/contact">Aide</router-link>
     </div>
     <router-link class="login" v-if="!isLoggedIn" to="/login"
       >Connexion

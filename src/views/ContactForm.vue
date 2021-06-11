@@ -34,8 +34,8 @@
 
 <script>
 import emailjs from "emailjs-com";
-import Navbar from "../base/Navbar.vue";
-import Footer from "../base/Footer.vue";
+import Navbar from "@/components/base/Navbar.vue";
+import Footer from "@/components/base/Footer.vue";
 
 export default {
   name: "ContactForm",

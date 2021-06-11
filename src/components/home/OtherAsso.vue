@@ -2,12 +2,11 @@
   <div class="other-asso">
     <div class="content">
       <div class="information">
-        <span class="title">Ils nous ont fait confiance !</span>
+        <span class="title">Ils nous font confiance !</span>
         <span class="description"
-          >Ut aliquet diam purus, sodales varius risus malesuada eu. Sed id
-          rhoncus est. Suspendisse accumsan imperdiet posuere. In lacus risus,
-          faucibus quis purus a, rutrum aliquam orci. Maecenas vitae neque
-          convallis, aliquam eros ac, accumsan ligula.</span
+          >Il serait long et fastidieux de présenter la liste exhaustive de nos
+          clients. Mais voici quelques exemples de collaborations qui illustrent
+          une partie de notre savoir-faire.</span
         >
         <router-link class="our-engagement" to="/about">
           Notre engagement

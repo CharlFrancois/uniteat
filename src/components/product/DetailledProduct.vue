@@ -39,7 +39,7 @@
 
 <script>
 import UserCard from "@/components/product/UserCard.vue";
-import ConfirmedReservation from "@/components/views/ConfirmedReservation.vue";
+import ConfirmedReservation from "@/components/product/ConfirmedReservation.vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default {

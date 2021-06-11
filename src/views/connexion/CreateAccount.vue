@@ -3,7 +3,7 @@
     <div class="content">
       <div class="left">
         <span class="text-uniteat">Unit'Eat</span>
-        <img src="../../../assets/svg/create_undraw.svg" class="create-svg" />
+        <img src="../../assets/svg/create_undraw.svg" class="create-svg" />
       </div>
       <div class="right">
         <span class="text-create">Créer un compte</span>
@@ -46,7 +46,7 @@ export default {
     border-radius: 57px;
     display: flex;
     .left {
-      background-image: url("../../../assets/svg/Inscription.svg");
+      background-image: url("../../assets/svg/Inscription.svg");
       background-size: cover;
       width: 40%;
       height: 100%;

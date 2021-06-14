@@ -9,6 +9,7 @@ npm install
 ## Lancer le serveur nodemon
 ```
 cd backend
+npm install
 nodemon app.js
 
 ```
